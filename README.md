@@ -3,6 +3,8 @@
 Static site (plain HTML, CSS and JavaScript). No build step, no dependencies, no database.
 It is independent of the Puc Puc Bubbles Android project: changing the site never requires a game release.
 
+See `docs/MAINTENANCE.md` for step-by-step updates and `docs/LINKS.md` / `docs/LEGAL-REVIEW.md` for open verification items.
+
 ## Update content
 Everything that changes lives in `config/site.config.js`:
 - Store availability and links (`games[].stores`)

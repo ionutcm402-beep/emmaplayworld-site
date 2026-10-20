@@ -160,7 +160,7 @@
     var viewer = $("viewer");
     shots.forEach(function (s) {
       var img = el("img", { src: s.src, alt: s.alt || (main.name + " screenshot"), loading: "lazy" });
-      var b = el("button", { type: "button", class: "shot", role: "listitem", "aria-label": "Enlarge: " + (s.alt || main.name + " screenshot") }, [img]);
+      var b = el("button", { type: "button", class: "shot", "aria-label": "Enlarge: " + (s.alt || main.name + " screenshot") }, [img]);
       b.addEventListener("click", function () {
         $("viewerImg").src = s.src; $("viewerImg").alt = s.alt || "";
         if (viewer.showModal) viewer.showModal(); else viewer.setAttribute("open", "");

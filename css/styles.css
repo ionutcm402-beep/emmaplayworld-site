@@ -9,7 +9,7 @@
   --cloud:#ffffff;
   --ink:#1d1236;
   --text:#5f5878;
-  --mute:#7f7896;
+  --mute:#6a6385;
   --grape:#6a3fe0;
   --grape-2:#8a5cf7;
   --lilac:#efe9ff;
@@ -73,7 +73,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .stores{display:flex;justify-content:flex-start;align-items:flex-end;gap:14px;margin-bottom:16px}
 .slot{display:flex;flex-direction:column;align-items:center;gap:6px}
 .status{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;line-height:1.3}
-.status.soon{background:linear-gradient(90deg,var(--b-pink),var(--grape-2));color:#fff;box-shadow:0 6px 14px -6px rgba(226,71,154,.7)}
+.status.soon{background:linear-gradient(90deg,#c42d83,#7c4be0);color:#fff;box-shadow:0 6px 14px -6px rgba(226,71,154,.7)}
 .badge{width:180px;height:54px;display:grid;place-items:center;border-radius:12px;background:#000;color:#fff;text-decoration:none;overflow:hidden;transition:transform .3s var(--ease);box-shadow:0 12px 26px -12px rgba(29,18,54,.6)}
 a.badge:hover{transform:translateY(-2px)}
 .badge.soon{cursor:default;opacity:.92}
