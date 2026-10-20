@@ -154,11 +154,23 @@
     if (!channel) poster.removeAttribute("href");
   }
 
-  /* Real screenshots, only when supplied. */
+  /* Real screenshots, only when supplied in the config. Tap one to enlarge it. */
   var shots = ((main && main.screenshots) || []).filter(function (s) { return s && s.src; });
   if (shots.length) {
-    shots.forEach(function (s) { $("shots").appendChild(el("img", { src: s.src, alt: s.alt || "", loading: "lazy" })); });
-    $("shots").hidden = false;
+    var viewer = $("viewer");
+    shots.forEach(function (s) {
+      var img = el("img", { src: s.src, alt: s.alt || (main.name + " screenshot"), loading: "lazy" });
+      var b = el("button", { type: "button", class: "shot", role: "listitem", "aria-label": "Enlarge: " + (s.alt || main.name + " screenshot") }, [img]);
+      b.addEventListener("click", function () {
+        $("viewerImg").src = s.src; $("viewerImg").alt = s.alt || "";
+        if (viewer.showModal) viewer.showModal(); else viewer.setAttribute("open", "");
+      });
+      $("shots").appendChild(b);
+    });
+    var closeV = function () { if (viewer.close) viewer.close(); else viewer.removeAttribute("open"); };
+    $("viewerClose").addEventListener("click", closeV);
+    viewer.addEventListener("click", function (e) { if (e.target === viewer) closeV(); });
+    $("gallery").hidden = false; $("navGallery").hidden = false;
   }
 
   /* ---------- the game: letter board ---------- */
@@ -249,7 +261,7 @@
   /* ---------- footer ---------- */
   $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.brand.name || "") + (S.brand.domain ? " · " + S.brand.domain : "");
   var nav = $("footNav");
-  [["Watch", "#watch"], ["The game", "#game"], ["Friends", "#friends"]].forEach(function (l) { nav.appendChild(el("a", { href: l[1], text: l[0] })); });
+  [["Watch", "#watch"], ["The game", "#game"]].concat(shots.length ? [["Gallery", "#gallery"]] : [], [["Friends", "#friends"]], others.length ? [["More games", "#games"]] : []).forEach(function (l) { nav.appendChild(el("a", { href: l[1], text: l[0] })); });
   if (S.legal && S.legal.privacyUrl) nav.appendChild(el("a", { href: S.legal.privacyUrl, text: "Privacy", rel: "noopener" }));
   if (S.legal && S.legal.termsUrl) nav.appendChild(el("a", { href: S.legal.termsUrl, text: "Terms", rel: "noopener" }));
   if (S.brand.contactEmail) $("mail").href = "mailto:" + S.brand.contactEmail; else $("mail").hidden = true;

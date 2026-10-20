@@ -130,8 +130,14 @@ section{padding-block:64px}
 .sub:hover{background:#000}
 
 /* screenshots (only when real ones are supplied in the config) */
-.shots{display:flex;gap:16px;overflow-x:auto;padding:6px 4px 14px;margin-top:28px;scroll-snap-type:x mandatory}
-.shots img{height:360px;width:auto;border-radius:22px;box-shadow:var(--shadow);scroll-snap-align:start;flex:none}
+.shots{display:flex;gap:16px;overflow-x:auto;padding:6px 4px 18px;scroll-snap-type:x mandatory;justify-content:safe center}
+.shot{flex:none;border:0;padding:0;background:none;cursor:zoom-in;border-radius:22px;scroll-snap-align:center}
+.shot img{display:block;height:360px;width:auto;border-radius:22px;box-shadow:var(--shadow);transition:transform .4s var(--ease)}
+.shot:hover img{transform:translateY(-4px)}
+.viewer{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh;overflow:visible}
+.viewer::backdrop{background:rgba(29,18,54,.72);backdrop-filter:blur(6px)}
+.viewer img{display:block;max-width:94vw;max-height:88vh;border-radius:20px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+.vx{position:absolute;right:-6px;top:-18px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;box-shadow:var(--shadow)}
 
 /* the game: letter board */
 .learn{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
@@ -206,7 +212,7 @@ section{padding-block:64px}
 @keyframes boing{0%{transform:scale(1)}30%{transform:scale(1.15,.88)}55%{transform:scale(.94,1.08)}100%{transform:scale(1)}}
 
 /* more games (cards are built from the config; hidden when there are none) */
-.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,360px));justify-content:center;gap:20px}
 .game{position:relative;overflow:hidden;border-radius:30px;padding:28px;color:#fff;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;background:var(--g,linear-gradient(155deg,#8a5cf7,#5d6df5));box-shadow:var(--shadow);transition:transform .5s var(--ease)}
 .game:hover{transform:translateY(-6px)}
 .game h3{color:#fff;font-size:32px}
@@ -250,7 +256,7 @@ section{padding-block:64px}
   .pboard{width:46%;top:8%}
   .poster img{height:84%;right:1%}
   .pbar strong{font-size:14px}
-  .shots img{height:300px}
+  .shot img{height:300px}
   .foot{flex-direction:column;align-items:center;text-align:center}
   .foot .mail{margin-left:0}
 }
