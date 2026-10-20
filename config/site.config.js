@@ -58,7 +58,9 @@ window.SITE = {
 
       /* YouTube videos about this game. Add real ones; leave [] until then.
          { id: "YOUTUBE_VIDEO_ID", title: "Real title", note: "Short real description" } */
-      videos: [],
+      videos: [
+        { id: "IpUuGXhjGYk", title: "Puc Puc Bubbles game trailer", note: "See Emma pop, spell, ride and collect" }
+      ],
 
       /* Real game screenshots, e.g. { src: "assets/screens/free-play.jpg", alt: "Free play board" }.
          The page shows them in a gallery when this list is not empty. */
