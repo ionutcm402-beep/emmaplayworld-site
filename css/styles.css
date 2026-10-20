@@ -78,7 +78,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 a.badge:hover{transform:translateY(-2px)}
 .badge.soon{cursor:default;opacity:.92}
 .badge img{width:100%;height:100%;object-fit:contain;display:block}
-.badge.has-art{background:transparent;box-shadow:none;border-radius:0}
+.badge.has-art{overflow:visible;width:auto;aspect-ratio:600/202;background:transparent;box-shadow:none;border-radius:0}
+.badge.has-art img{filter:drop-shadow(0 10px 14px rgba(29,18,54,.28))}
 .fallback{display:flex;align-items:center;gap:11px;padding:0 14px;width:100%}
 .fallback svg{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .fallback small{display:block;font-size:9.5px;letter-spacing:.06em;opacity:.85;line-height:1.2}

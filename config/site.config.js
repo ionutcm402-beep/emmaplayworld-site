@@ -52,8 +52,8 @@ window.SITE = {
 
       stores: {
         /* Set to "available" and add the verified listing URL on launch day. */
-        googlePlay: { status: "coming-soon", url: "", badge: "" },
-        appStore:   { status: "coming-soon", url: "", badge: "" }
+        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        appStore:   { status: "coming-soon", url: "", badge: "assets/badges/app-store.png" }
       },
 
       /* YouTube videos about this game. Add real ones; leave [] until then.
