@@ -29,8 +29,8 @@ window.SITE = {
 
   /* Optional. Shown in the footer only when set. Add the real URLs once they exist. */
   legal: {
-    privacyUrl: "",
-    termsUrl: ""
+    privacyUrl: "privacy.html",
+    termsUrl: "terms.html"
   },
 
   /*
