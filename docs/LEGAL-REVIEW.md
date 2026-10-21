@@ -5,7 +5,7 @@
 ## What the site was verified to do (from the code)
 - Sets no cookies and uses no local/session storage, analytics, advertising, forms, accounts or comments.
 - Loads the Baloo 2 font from Google Fonts on every page view (Google receives the visitor's IP).
-- Links to YouTube. Embedded video is created only after a tap, from `youtube-nocookie.com`, and only when videos are added in the config (none yet).
+- Links to YouTube. Embedded video is created only after a tap, from `youtube-nocookie.com`. One video (the game trailer) is configured.
 - Uses a `mailto:` link for contact.
 - Served by Cloudflare (Pages).
 
@@ -16,5 +16,5 @@
 4. **Email handling promises.** The notice says messages are kept "as long as needed" and that we delete a child's information on request. Confirm these are things you will actually do.
 5. **Jurisdiction.** No governing law, supervisory authority, or data-protection representative is named, because your location and legal status are unknown. A lawyer should decide this.
 6. **Ownership wording.** The terms say artwork and characters belong to "Emma Play World or its licensors". Confirm who owns the artwork (and whether any was AI-generated or licensed) and adjust.
-7. **The game.** These pages do not cover the Android app. The app needs its own privacy policy (required by Google Play, and especially important for a children's game: ads, analytics, SDKs, data collection, Google Play Families policy). I have not seen the app's code, so I have not described its practices.
+7. **The game.** `privacy.html` now has an app section (`#app`, added 21 Oct 2026), written from the game code (v115–v117) and a rebuilt copy of the Android project (Capacitor 8, cordova-plugin-purchase 13.19.1, Google Play Billing 9). Before each app release, check it still matches: if any SDK, analytics, ads or accounts are added, update this section and the Play Console Data safety form in the same release. The backup paragraph assumes `android:allowBackup="true"` (the Capacitor default); remove it if backup is turned off.
 8. **Children's audience.** If the game targets children, rules such as COPPA (US), UK Children's Code and GDPR provisions on children's data may apply. Professional review is recommended.
