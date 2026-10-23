@@ -4,7 +4,7 @@
 
 ## What the site was verified to do (from the code)
 - Sets no cookies and uses no local/session storage, analytics, advertising, forms, accounts or comments.
-- Loads the Baloo 2 font from Google Fonts on every page view (Google receives the visitor's IP).
+- Fonts (Fredoka and Nunito, SIL Open Font License) are hosted on the site itself in `assets/fonts/`; nothing is loaded from Google.
 - Links to YouTube. Embedded video is created only after a tap, from `youtube-nocookie.com`. One video (the game trailer) is configured.
 - Uses a `mailto:` link for contact.
 - Served by Cloudflare (Pages).
@@ -12,7 +12,7 @@
 ## Please confirm (not knowable from the code)
 1. **Who is the operator?** The pages say only "Emma Play World" and the contact email. Is there a registered company, sole trader, or other legal entity? If so, its legal name, registration number and registered address may need to appear on the site and in the policies. I have not invented any.
 2. **Cloudflare settings.** In the Cloudflare dashboard, check that Web Analytics / Real User Monitoring is OFF for this project and domain, and that no cookies are set (browser DevTools → Application → Cookies, on emmaplayworld.com). If analytics is on, the privacy notice must change.
-3. **Google Fonts.** Loading fonts from Google transfers visitor IPs to Google. Some regulators and courts have objected to this. Safest fix: host the Baloo 2 font files on the site (needs the font files downloaded; I cannot download them from this sandbox). Tell me to proceed if you want this.
+3. **Fonts.** Resolved: Fredoka and Nunito are now self-hosted, so no visitor data goes to Google Fonts.
 4. **Email handling promises.** The notice says messages are kept "as long as needed" and that we delete a child's information on request. Confirm these are things you will actually do.
 5. **Jurisdiction.** No governing law, supervisory authority, or data-protection representative is named, because your location and legal status are unknown. A lawyer should decide this.
 6. **Ownership wording.** The terms say artwork and characters belong to "Emma Play World or its licensors". Confirm who owns the artwork (and whether any was AI-generated or licensed) and adjust.

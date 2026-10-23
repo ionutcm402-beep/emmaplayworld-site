@@ -1,3 +1,5 @@
+@font-face{font-family:"Fredoka";font-style:normal;font-weight:300 700;font-display:swap;src:url("../assets/fonts/fredoka-latin-wght.woff2") format("woff2")}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:200 1000;font-display:swap;src:url("../assets/fonts/nunito-latin-wght.woff2") format("woff2")}
 /*
  * Emma Play World: styles.
  * Layout: frosted top bar, hero with floating Emma, video showcase, "A fun way to learn
@@ -15,8 +17,8 @@
   --lilac:#efe9ff;
   --line:rgba(29,18,54,.08);
   --b-red:#f0525a; --b-orange:#ff9a3c; --b-yellow:#ffd23f; --b-green:#3cc56b; --b-blue:#3b9cf0; --b-purple:#9b5cf0; --b-pink:#ff6fb5;
-  --display:"Baloo 2","Arial Rounded MT Bold",system-ui,sans-serif;
-  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --display:"Fredoka","Arial Rounded MT Bold","Baloo 2",system-ui,sans-serif;
+  --body:"Nunito","Arial Rounded MT Bold",ui-rounded,system-ui,sans-serif;
   --shadow:0 1px 2px rgba(40,20,90,.04),0 8px 24px rgba(40,20,90,.06),0 30px 60px -20px rgba(80,40,180,.18);
   --ease:cubic-bezier(.2,.7,.2,1);
   color-scheme:light;
@@ -346,3 +348,23 @@ section{padding-block:64px}
 @keyframes frswap{0%{transform:scale(1.18);filter:brightness(1.25)}100%{transform:scale(1);filter:none}}
 @media(prefers-reduced-motion:reduce){.fr-pop i{animation-duration:.01s}.fr-card.boing .fr-pic img{animation:none}}
 #friends{overflow-x:clip}
+
+/* toy-like type: chunky rounded Fredoka headings in a violet-to-pink gradient, friendly Nunito for text */
+body{font-weight:600;letter-spacing:0}
+h1,h2,h3{font-weight:700;letter-spacing:0}
+.hero h1,.head h2,.learn h2,.sign h2{background:linear-gradient(95deg,#5b32d6 0%,#8a45f2 48%,#e34fb8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 0 rgba(91,50,214,.16));padding-bottom:.08em}
+.hero h1 em,.head h2 em,.learn h2 em,.sign h2 em{background:none;color:inherit;-webkit-text-fill-color:inherit}
+.hero p,.head p,.learn p,.sign p,.learn-intro{font-weight:700;color:#4f3f86;font-size:clamp(18px,2.2vw,21px)}
+.kicker{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;background:linear-gradient(90deg,#8a45f2,#e34fb8);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.feat b,.fr-tag,.pbar strong,.logo{font-weight:700}
+.feat span,.feat small,.fallback span{font-weight:700;color:#5a4a8a}
+.link,.pill,.sub,.links a{font-family:var(--display);font-weight:600}
+.links a{font-size:16px}
+#friendsHint{font-weight:700;color:#4f3f86}
+.foot,.foot a{font-weight:700}
+.logo{font-weight:700}
+.lead{font-weight:700;color:#4f3f86}
+.feat b{color:#5b32d6;font-size:20px}
+.feat span{font-size:14px}
+.hero h1{background:none;-webkit-text-fill-color:#6a3fe0;color:#6a3fe0;filter:drop-shadow(0 3px 0 rgba(91,50,214,.18))}
+.hero h1 em{-webkit-text-fill-color:#e34fb8;color:#e34fb8}
