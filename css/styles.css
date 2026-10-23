@@ -304,7 +304,7 @@ section{padding-block:64px}
 .hero p{max-width:40ch;margin:14px auto 24px}
 .hero .stores,.hero .cta{justify-content:center}
 @media(min-width:601px){.hero .stores{align-items:flex-end}}
-.sign img{width:min(100%,460px);aspect-ratio:454/254;object-fit:cover;border-radius:32px;animation:none;filter:none;box-shadow:0 0 0 6px rgba(255,255,255,.9),0 26px 60px -24px rgba(90,40,200,.5)}
+.sign img{width:min(100%,460px);aspect-ratio:16/9;object-fit:cover;border-radius:32px;animation:none;filter:none;box-shadow:0 0 0 6px rgba(255,255,255,.9),0 26px 60px -24px rgba(90,40,200,.5)}
 .head h2 em,.learn h2 em,.sign h2 em{background:linear-gradient(90deg,#ff5fa8,#8f4dff);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .tv{box-shadow:0 0 0 5px rgba(255,255,255,.9),0 34px 70px -26px rgba(90,40,200,.5);background:linear-gradient(135deg,#fff,#fdf2fb)}
 .bar,body::before{background:rgba(214,236,255,.78)}
