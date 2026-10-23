@@ -42,3 +42,6 @@ Copy the commented example at the bottom of the `games` list, set `featured: fal
 
 ## Roll back
 In Cloudflare: Workers & Pages → emmaplayworld-site → Deployments → pick an earlier deployment → Rollback. Or revert the commit on GitHub.
+
+## After changing CSS or JS
+`index.html` links the CSS and scripts with a `?v=...` suffix. Change that suffix (for example `?v=20261101`) whenever you edit `css/`, `js/` or `config/`, so visitors' phones fetch the new files instead of an old cached copy.
