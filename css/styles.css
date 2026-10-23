@@ -290,7 +290,7 @@ section{padding-block:64px}
 @media(max-width:600px){.pbar small{display:none}.pbar strong{white-space:normal;line-height:1.1}.pbar{padding-right:14px}}
 
 /* optional full-artwork cover for the video poster (game.cover in the config) */
-.poster.has-cover>:not(.cover){display:none}
+.poster.has-cover>:not(.cover):not(.fx){display:none}
 .poster.has-cover .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:none;right:auto;bottom:auto;transition:transform .8s var(--ease)}
 .poster.has-cover:hover .cover{transform:scale(1.02)}
 .poster.has-cover::before,.poster.has-cover::after{display:none}
@@ -324,3 +324,13 @@ section{padding-block:64px}
 .fr-card.boing{animation:frboing .6s var(--ease)}
 @keyframes frboing{25%{transform:rotate(var(--tilt)) scale(1.08) rotate(4deg)}55%{transform:rotate(var(--tilt)) scale(.97) rotate(-3deg)}}
 @media(prefers-reduced-motion:reduce){.fr-card,.fr-card.boing{animation:none;transition:none}.fr-card:hover{transform:rotate(var(--tilt))}}
+
+/* floating bubbles over artwork */
+.sign-art{position:relative;width:min(100%,460px);border-radius:32px;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.9),0 26px 60px -24px rgba(90,40,200,.5)}
+.sign-art img{width:100%;box-shadow:none;border-radius:0}
+.hero .art,.fr-pic{position:relative}
+.fx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3;border-radius:inherit}
+.fx i{position:absolute;border-radius:50%;opacity:.8;mix-blend-mode:screen;
+  background:radial-gradient(circle at 32% 28%,#fff 0 12%,rgba(255,255,255,0) 34%),radial-gradient(circle at 60% 65%,rgba(255,150,230,.35),rgba(120,200,255,.3) 60%,rgba(255,255,255,.12));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.75);animation:fxfloat 6s ease-in-out infinite}
+@keyframes fxfloat{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(var(--sw),-12px) scale(1.07)}70%{transform:translate(calc(var(--sw) * -.6),-5px) scale(.95)}}

@@ -309,3 +309,32 @@
     items.forEach(function (n) { io.observe(n); });
   } catch (e) { /* the page works without it */ }
 })();
+
+/* Gentle floating bubbles drawn over the artwork pictures (not the game screenshots). */
+(function () {
+  try {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    function addFx(box, n) {
+      if (!box || box.querySelector(".fx")) return;
+      var fx = document.createElement("span"); fx.className = "fx"; fx.setAttribute("aria-hidden", "true");
+      for (var i = 0; i < n; i++) {
+        var b = document.createElement("i"), d = 7 + rnd() * 15;
+        b.style.cssText = "left:" + (4 + rnd() * 90).toFixed(1) + "%;top:" + (6 + rnd() * 84).toFixed(1) + "%;width:" + d.toFixed(0) + "px;height:" + d.toFixed(0) +
+          "px;animation-duration:" + (4.5 + rnd() * 4).toFixed(1) + "s;animation-delay:-" + (rnd() * 8).toFixed(1) + "s;--sw:" + (rnd() < .5 ? -1 : 1) * (4 + rnd() * 6).toFixed(0) + "px";
+        fx.appendChild(b);
+      }
+      box.appendChild(fx);
+    }
+    function run() {
+      addFx(document.querySelector(".hero .art"), 16);
+      addFx(document.querySelector(".poster.has-cover"), 14);
+      Array.prototype.forEach.call(document.querySelectorAll(".fr-pic"), function (n) { addFx(n, 9); });
+      var si = document.querySelector(".sign img");
+      if (si && !si.parentNode.classList.contains("sign-art")) {
+        var w = document.createElement("div"); w.className = "sign-art"; si.parentNode.insertBefore(w, si); w.appendChild(si); addFx(w, 12);
+      }
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(run, 0); }); else setTimeout(run, 0);
+  } catch (e) { /* decoration only */ }
+})();
