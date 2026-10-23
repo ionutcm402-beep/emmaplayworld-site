@@ -114,6 +114,11 @@
     var b = el("b", { text: l, style: "--c:var(" + ["--b-red", "--b-orange", "--b-yellow", "--b-green", "--b-blue", "--b-purple"][i % 6] + ");--i:" + i });
     $("pboard").appendChild(b);
   });
+  if (main && main.cover && main.cover.src) {
+    poster.classList.add("has-cover");
+    poster.appendChild(el("img", { class: "cover", src: main.cover.src, alt: main.cover.alt || "", width: "1280", height: "720" }));
+    poster.setAttribute("aria-label", "Watch the " + main.name + " trailer");
+  }
   if (channel) {
     $("ytLink").href = channel; $("subBtn").href = channel + "?sub_confirmation=1"; poster.href = channel;
   } else {

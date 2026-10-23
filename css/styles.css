@@ -288,3 +288,9 @@ section{padding-block:64px}
 .shot-tray img{display:block;width:100%;height:auto;border-radius:22px}
 
 @media(max-width:600px){.pbar small{display:none}.pbar strong{white-space:normal;line-height:1.1}.pbar{padding-right:14px}}
+
+/* optional full-artwork cover for the video poster (game.cover in the config) */
+.poster.has-cover>:not(.cover){display:none}
+.poster.has-cover .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:none;right:auto;bottom:auto;transition:transform .8s var(--ease)}
+.poster.has-cover:hover .cover{transform:scale(1.02)}
+.poster.has-cover::before,.poster.has-cover::after{display:none}
