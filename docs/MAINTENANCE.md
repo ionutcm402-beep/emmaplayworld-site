@@ -22,7 +22,7 @@ The Gallery section and its menu link appear automatically. Use genuine screensh
 
 ## Change artwork or characters
 - Emma: replace `assets/emma/emma-full.webp` (transparent background, keep the file name).
-- Friends (currently Kitty and Bunny): each has one featured square picture in `assets/poses/`, set by `pose` in the config; remove `pose` to get the one-at-a-time picker instead. Picker picture: replace the image in `assets/friends/` (keep the file names), or add a new entry in the config's `characters` list with `name`, `img`, `thumb` and colours. `say` is optional and should only be a line the character really says in the game.
+- Friends (currently Kitty and Bunny): each has a list of square `poses` in `assets/poses/` (set in the config; the first shows, tapping the friend shows the next); remove `poses` to get the one-at-a-time picker instead. Picker picture: replace the image in `assets/friends/` (keep the file names), or add a new entry in the config's `characters` list with `name`, `img`, `thumb` and colours. `say` is optional and should only be a line the character really says in the game.
 - Share-preview image: `assets/og-image.jpg` (1200 × 630).
 
 ## Official store badges

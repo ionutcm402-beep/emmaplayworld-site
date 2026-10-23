@@ -108,11 +108,22 @@ window.SITE = {
    * say is optional. Add it only for lines a character really says in the game.
    * c = name colour, pc = soft background colour for the name pill.
    */
-  /* "pose" is the one picture shown for each friend (a square picture, see assets/poses/). */
+  /* "poses": square pictures (assets/poses/). The first is shown; tapping the friend shows the next one. */
   characters: [
     { name: "Kitty", img: "assets/friends/kitty.webp", thumb: "assets/friends/kitty-thumb.webp", c: "#e0661a", pc: "#ffe6d2", c2: "#ff8a3d",
-      pose: { src: "assets/poses/kitty-circle.webp", alt: "Kitty jumping for joy" } },
+      poses: [
+        { src: "assets/poses/kitty-circle.webp", alt: "Kitty jumping for joy" },
+        { src: "assets/poses/kitty-sitting.webp", alt: "Kitty sitting and waving" },
+        { src: "assets/poses/kitty-winking.webp", alt: "Kitty winking" },
+        { src: "assets/poses/kitty-heart.webp", alt: "Kitty holding a pink heart" },
+        { src: "assets/poses/kitty-playing.webp", alt: "Kitty playing" }
+      ] },
     { name: "Bunny", img: "assets/friends/bunny.webp", thumb: "assets/friends/bunny-thumb.webp", c: "#e2479a", pc: "#ffe0ef", c2: "#9b5cf0",
-      pose: { src: "assets/poses/bunny-wave.webp", alt: "Bunny sitting and waving" } }
+      poses: [
+        { src: "assets/poses/bunny-wave.webp", alt: "Bunny sitting and waving" },
+        { src: "assets/poses/bunny-winking.webp", alt: "Bunny winking" },
+        { src: "assets/poses/bunny-jumping.webp", alt: "Bunny jumping for joy" },
+        { src: "assets/poses/bunny-playing.webp", alt: "Bunny playing with a bubble wand" }
+      ] }
   ]
 };

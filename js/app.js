@@ -216,22 +216,32 @@
   if (!chars.length) {
     $("friends").hidden = true;
     Array.prototype.forEach.call(document.querySelectorAll('a[href="#friends"]'), function (n) { n.hidden = true; });
-  } else if (chars.some(function (c) { return c && c.pose && c.pose.src; })) {
-    /* One featured picture per friend, shown as a big sticker with a rainbow glow. */
+  } else if (chars.some(function (c) { return c && c.poses && c.poses.length; })) {
+    /* One big picture per friend; tapping it pops bubbles and shows the next pose. */
     $("stage").hidden = true;
-    $("friendsHint").textContent = "Tap a friend to say hello!";
+    $("friendsHint").textContent = "Tap a friend to change their pose!";
     var duo = $("panels"); duo.hidden = false;
     chars.forEach(function (f, i) {
-      if (!f.pose || !f.pose.src) return;
-      var b = el("button", { class: "fr-card", type: "button", "aria-label": "Say hello to " + f.name,
+      if (!f.poses || !f.poses.length) return;
+      var idx = 0, img = el("img", { src: f.poses[0].src, alt: f.poses[0].alt || f.name, loading: "lazy", width: "500", height: "500" });
+      var b = el("button", { class: "fr-card", type: "button", "aria-label": f.name + ": tap to change pose",
         style: "--nc:" + (f.c || "#6a3fe0") + ";--nc2:" + (f.c2 || f.c || "#8a5cf7") + ";--pc:" + (f.pc || "#efe6ff") + ";--tilt:" + (i % 2 ? "3deg" : "-3deg") }, [
         el("span", { class: "fr-glow", "aria-hidden": "true" }),
-        el("span", { class: "fr-pic" }, [el("img", { src: f.pose.src, alt: f.pose.alt || f.name, loading: "lazy", width: "500", height: "500" })]),
+        el("span", { class: "fr-pic" }, [img]),
         el("span", { class: "fr-tag", text: f.name })
       ]);
+      f.poses.forEach(function (ps, k) { if (k) { var pre = new Image(); pre.src = ps.src; } });
       b.addEventListener("click", function () {
+        idx = (idx + 1) % f.poses.length;
+        img.src = f.poses[idx].src; img.alt = f.poses[idx].alt || f.name;
         b.classList.remove("boing"); void b.offsetWidth; b.classList.add("boing");
-        if (window.burst) { var r = b.getBoundingClientRect(); window.burst(r.left + r.width / 2, r.top + r.height / 2, 24); }
+        var pop = el("span", { class: "fr-pop", "aria-hidden": "true" });
+        var cols = ["#ff6fb5", "#9b5cf0", "#3b9cf0", "#ffd23f", "#3cc56b", "#ff9a3c"];
+        for (var q = 0; q < 14; q++) {
+          var ang = (q / 14) * 6.283 + Math.random() * 0.4, dist = 70 + Math.random() * 60, sz = 8 + Math.random() * 12;
+          pop.appendChild(el("i", { style: "--dx:" + (Math.cos(ang) * dist).toFixed(0) + "px;--dy:" + (Math.sin(ang) * dist - 20).toFixed(0) + "px;width:" + sz.toFixed(0) + "px;height:" + sz.toFixed(0) + "px;--c:" + cols[q % 6] }));
+        }
+        b.appendChild(pop); setTimeout(function () { if (pop.parentNode) pop.parentNode.removeChild(pop); }, 900);
       });
       duo.appendChild(b);
     });
