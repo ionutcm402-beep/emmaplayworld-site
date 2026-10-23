@@ -18,11 +18,11 @@ In the game's `videos` list add `{ id: "VIDEO_ID", title: "Real title", note: "S
 ## Add real gameplay screenshots
 1. Put the image files in `assets/screens/` (JPG or WebP, around 1000 px tall).
 2. In the game's `screenshots` list add `{ src: "assets/screens/name.jpg", alt: "What the screenshot shows" }`.
-The Gallery section and its menu link appear automatically. Use genuine screenshots only.
+The Gallery section and its menu link appear automatically. Use genuine screenshots only. The "Pop, play and explore" section shows `board.image` (a game screenshot); remove `board.image` to fall back to the interactive bubble toy.
 
 ## Change artwork or characters
 - Emma: replace `assets/emma/emma-full.webp` (transparent background, keep the file name).
-- Friends: replace the image in `assets/friends/` (keep the file names), or add a new entry in the config's `characters` list with `name`, `img`, `thumb` and colours. `say` is optional and should only be a line the character really says in the game.
+- Friends (currently Bunny and Kitty, transparent WebP): replace the image in `assets/friends/` (keep the file names), or add a new entry in the config's `characters` list with `name`, `img`, `thumb` and colours. `say` is optional and should only be a line the character really says in the game.
 - Share-preview image: `assets/og-image.jpg` (1200 × 630).
 
 ## Official store badges

@@ -278,3 +278,6 @@ section{padding-block:64px}
 .legal ul{padding-left:22px;display:grid;gap:10px}
 .legal a{color:var(--grape);text-underline-offset:3px}
 .legal .updated{color:var(--mute);font-size:15px;margin-bottom:10px}
+
+.shot-tray{max-width:360px;margin-inline:auto;padding:12px}
+.shot-tray img{display:block;width:100%;height:auto;border-radius:22px}

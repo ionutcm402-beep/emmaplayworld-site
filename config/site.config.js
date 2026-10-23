@@ -48,7 +48,7 @@ window.SITE = {
       id: "puc-puc-bubbles",
       featured: true,
       name: "Puc Puc Bubbles",
-      tagline: "Play, learn and discover with Emma and her friends.",
+      tagline: "Play, learn and explore with Emma and her friends.",
 
       stores: {
         /* Set to "available" and add the verified listing URL on launch day. */
@@ -59,22 +59,30 @@ window.SITE = {
       /* YouTube videos about this game. Add real ones; leave [] until then.
          { id: "YOUTUBE_VIDEO_ID", title: "Real title", note: "Short real description" } */
       videos: [
-        { id: "IpUuGXhjGYk", title: "Puc Puc Bubbles game trailer", note: "See Emma pop, spell, ride and collect" }
+        { id: "IpUuGXhjGYk", title: "Puc Puc Bubbles game trailer", note: "Watch the trailer on YouTube" }
       ],
 
       /* Real game screenshots, e.g. { src: "assets/screens/free-play.jpg", alt: "Free play board" }.
          The page shows them in a gallery when this list is not empty. */
-      screenshots: [],
+      screenshots: [
+        { src: "assets/screens/home.webp",               alt: "Puc Puc Bubbles home screen with Emma, Bunny and Kitty under a rainbow and a big Play button" },
+        { src: "assets/screens/free-play-letters.webp",  alt: "Free Play on the Letters board: rows of glossy rainbow letter bubbles" },
+        { src: "assets/screens/pet-friends.webp",        alt: "Free Play on the Pet friends board: glossy bubbles with a cat, dog, bunny, panda, fox, frog and more" },
+        { src: "assets/screens/discover.webp",           alt: "Discover mode: Emma says pop a bubble to see what's hiding" },
+        { src: "assets/screens/explore.webp",            alt: "Explore screen with Free Play and Discover, plus Boards and Collection" }
+      ],
 
-      /* The letter board shown in "A fun way to learn and play". */
+      /* "The game" section. Wording comes from the game's own Explore screen.
+         image: a real screenshot shown in the section (no image = a small pop-able bubble toy from keys). */
       board: {
-        title: "A fun way to learn and play",
-        intro: "Pop the bubbles, explore letters and discover new surprises!",
-        keys: "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,?!".split(""),
+        title: "Pop, play and",
+        titleAccent: "explore",
+        intro: "Choose a board of letters, numbers, animals and more, and pop away with Emma and her friends.",
+        image: { src: "assets/screens/free-play-letters.webp", alt: "Free Play on the Letters board in Puc Puc Bubbles: rows of glossy rainbow letter bubbles with Emma and Kitty below" },
         features: [
-          { icon: "play",  color: "pink",   title: "Play",     text: "Simple and fun" },
-          { icon: "star",  color: "yellow", title: "Learn",    text: "Letters and more" },
-          { icon: "bulb",  color: "blue",   title: "Discover", text: "New surprises" }
+          { icon: "play",  color: "pink",   title: "Free Play", text: "Pop any bubble you like!" },
+          { icon: "bulb",  color: "blue",   title: "Discover",  text: "Pop to find what's hiding!" },
+          { icon: "star",  color: "yellow", title: "Boards",    text: "Choose what to pop" }
         ]
       }
     }
@@ -95,19 +103,12 @@ window.SITE = {
   ],
 
   /*
-   * CHARACTERS shown in "Emma's friends".
+   * CHARACTERS shown in "Emma's friends" (the friends in the current game: Bunny and Kitty).
    * say is optional. Add it only for lines a character really says in the game.
    * c = name colour, pc = soft background colour for the name pill.
    */
   characters: [
-    { name: "Ollie",   img: "assets/friends/ollie.jpg",   thumb: "assets/friends/ollie-thumb.jpg",   say: "Hoo-ray!", c: "#8a5cf7", pc: "#ece2ff" },
-    { name: "Leo",     img: "assets/friends/leo.jpg",     thumb: "assets/friends/leo-thumb.jpg",     c: "#2f7be0", pc: "#dfeaff" },
-    { name: "Lily",    img: "assets/friends/lily.jpg",    thumb: "assets/friends/lily-thumb.jpg",    c: "#d99a00", pc: "#fff3c4" },
-    { name: "Max",     img: "assets/friends/max.jpg",     thumb: "assets/friends/max-thumb.jpg",     c: "#2f6fd0", pc: "#dfeaff" },
-    { name: "Mia",     img: "assets/friends/mia.jpg",     thumb: "assets/friends/mia-thumb.jpg",     c: "#e2479a", pc: "#ffe0ef" },
-    { name: "Charlie", img: "assets/friends/charlie.jpg", thumb: "assets/friends/charlie-thumb.jpg", c: "#23964f", pc: "#dcf5e5" },
-    { name: "Bella",   img: "assets/friends/bella.jpg",   thumb: "assets/friends/bella-thumb.jpg",   c: "#e2479a", pc: "#ffe0ef" },
-    { name: "Nina",    img: "assets/friends/nina.jpg",    thumb: "assets/friends/nina-thumb.jpg",    c: "#8a4fe0", pc: "#ece2ff" },
-    { name: "Benny",   img: "assets/friends/benny.jpg",   thumb: "assets/friends/benny-thumb.jpg",   c: "#c8651b", pc: "#ffe6d2" }
+    { name: "Bunny", img: "assets/friends/bunny.webp", thumb: "assets/friends/bunny-thumb.webp", c: "#e2479a", pc: "#ffe0ef" },
+    { name: "Kitty", img: "assets/friends/kitty.webp", thumb: "assets/friends/kitty-thumb.webp", c: "#c8651b", pc: "#ffe6d2" }
   ]
 };

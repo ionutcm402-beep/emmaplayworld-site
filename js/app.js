@@ -184,16 +184,23 @@
       var fi = el("span", { class: "fi c-" + (f.color || "pink") }, [svg(ICONS[f.icon] || ICONS.star)]);
       $("feats").appendChild(el("div", { class: "feat" }, [fi, el("b", { text: f.title }), el("span", { text: f.text })]));
     });
-    (board.keys || []).forEach(function (k, i) {
-      var b = el("button", { class: "pp-bubble " + COLORS[i % 6], type: "button", "aria-label": "Pop " + k, style: "--i:" + i, text: k });
-      b.addEventListener("click", function () {
-        b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
-        var r = b.getBoundingClientRect();
-        if (window.burst) window.burst(r.left + r.width / 2, r.top + r.height / 2, 10);
+    if (board.image && board.image.src) {
+      /* a real screenshot of the game instead of the bubble toy */
+      var tray = $("board").parentNode; tray.className = "tray shot-tray";
+      $("board").remove();
+      tray.appendChild(el("img", { src: board.image.src, alt: board.image.alt || (main.name + " screenshot"), loading: "lazy" }));
+    } else {
+      (board.keys || []).forEach(function (k, i) {
+        var b = el("button", { class: "pp-bubble " + COLORS[i % 6], type: "button", "aria-label": "Pop " + k, style: "--i:" + i, text: k });
+        b.addEventListener("click", function () {
+          b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
+          var r = b.getBoundingClientRect();
+          if (window.burst) window.burst(r.left + r.width / 2, r.top + r.height / 2, 10);
+        });
+        b.addEventListener("animationend", function (e) { if (e.animationName === "pop") b.classList.remove("pop"); });
+        $("board").appendChild(b);
       });
-      b.addEventListener("animationend", function (e) { if (e.animationName === "pop") b.classList.remove("pop"); });
-      $("board").appendChild(b);
-    });
+    }
   } else {
     $("game").hidden = true;
   }
