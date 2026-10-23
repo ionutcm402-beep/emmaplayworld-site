@@ -108,24 +108,11 @@ window.SITE = {
    * say is optional. Add it only for lines a character really says in the game.
    * c = name colour, pc = soft background colour for the name pill.
    */
-  /* Each friend can have "poses": pictures shown in a colourful panel on the page.
-     If no friend has poses, the page falls back to a one-at-a-time picker. */
+  /* "pose" is the one picture shown for each friend (a square picture, see assets/poses/). */
   characters: [
     { name: "Kitty", img: "assets/friends/kitty.webp", thumb: "assets/friends/kitty-thumb.webp", c: "#e0661a", pc: "#ffe6d2", c2: "#ff8a3d",
-      poses: [
-        { src: "assets/poses/kitty-sitting-waving.webp", label: "Sitting & Waving" },
-        { src: "assets/poses/kitty-winking.webp", label: "Winking" },
-        { src: "assets/poses/kitty-jumping.webp", label: "Jumping" },
-        { src: "assets/poses/kitty-holding-heart.webp", label: "Holding a Heart" },
-        { src: "assets/poses/kitty-playing.webp", label: "Playing" }
-      ] },
+      pose: { src: "assets/poses/kitty-circle.webp", alt: "Kitty jumping for joy" } },
     { name: "Bunny", img: "assets/friends/bunny.webp", thumb: "assets/friends/bunny-thumb.webp", c: "#e2479a", pc: "#ffe0ef", c2: "#9b5cf0",
-      poses: [
-        { src: "assets/poses/bunny-sitting-waving.webp", label: "Sitting & Waving" },
-        { src: "assets/poses/bunny-winking.webp", label: "Winking" },
-        { src: "assets/poses/bunny-jumping.webp", label: "Jumping" },
-        { src: "assets/poses/bunny-holding-heart.webp", label: "Holding a Heart" },
-        { src: "assets/poses/bunny-playing.webp", label: "Playing" }
-      ] }
+      pose: { src: "assets/poses/bunny-circle.webp", alt: "Bunny holding a pink heart" } }
   ]
 };
