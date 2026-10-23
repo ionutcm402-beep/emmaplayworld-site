@@ -9,7 +9,7 @@ Last checked: 20 Oct 2026. Rule: nothing is linked or claimed unless verified. U
 | Google Play listing | **NOT VERIFIED. No link is shown.** Badge shows "Coming soon" and is not clickable. | A web search found no listing for Puc Puc Bubbles. Needs the real URL (`https://play.google.com/store/apps/details?id=...`) from Play Console. |
 | Apple App Store | **No listing exists.** Official badge shown, not clickable, with a "Coming soon" pill. No Apple link is created. | Needs a real `https://apps.apple.com/...` URL once the app is live there. |
 | Official store badges | Supplied by the owner as artwork; used unmodified apart from cropping (`assets/badges/`). | |
-| Game video | Trailer `IpUuGXhjGYk` (supplied by the owner). Note text is neutral. | Not fetched by tooling. Check the trailer still matches the final game (it may show modes that were removed). |
+| Game video | Video `GDrtdMcH-H4` (https://youtu.be/GDrtdMcH-H4, supplied by the owner on 23 Oct 2026; replaces the earlier `IpUuGXhjGYk`). Note text is neutral. | Not fetched by tooling. Check it matches the final game. |
 | Gameplay screenshots | 5 genuine screenshots taken from the final game build (`assets/screens/`). Gallery is shown. | Retake if the game's look changes. |
 | Contact email `contact.emmaplayworld@gmail.com` | Supplied by the owner; rendered as a `mailto:` link. Delivery not tested. | Send one test message to it. |
 | Privacy policy / Terms | **None.** Footer links are hidden. | Needs the real URLs (`legal.privacyUrl`, `legal.termsUrl`). |

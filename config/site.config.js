@@ -60,7 +60,7 @@ window.SITE = {
          { id: "YOUTUBE_VIDEO_ID", title: "Real title", note: "Short real description" } */
       cover: { src: "assets/video/trailer-cover.webp", alt: "Puc Puc Bubbles with Emma, Bunny and Kitty. Watch the game trailer." },
       videos: [
-        { id: "IpUuGXhjGYk", title: "Puc Puc Bubbles game trailer", note: "Watch the trailer on YouTube" }
+        { id: "GDrtdMcH-H4", title: "Puc Puc Bubbles game trailer", note: "Watch the trailer on YouTube" }
       ],
 
       /* Real game screenshots, e.g. { src: "assets/screens/free-play.jpg", alt: "Free play board" }.
