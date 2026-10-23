@@ -202,6 +202,7 @@
   var chars = Array.isArray(S.characters) ? S.characters : [];
   if (!chars.length) {
     $("friends").hidden = true;
+    Array.prototype.forEach.call(document.querySelectorAll('a[href="#friends"]'), function (n) { n.hidden = true; });
   } else {
     var picker = $("picker"), spot = $("spot"), spotImg = $("spotImg"), stage = $("stage");
     var cur = 0, auto = null, reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -261,7 +262,7 @@
   /* ---------- footer ---------- */
   $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.brand.name || "") + (S.brand.domain ? " · " + S.brand.domain : "");
   var nav = $("footNav");
-  [["Watch", "#watch"], ["The game", "#game"]].concat(shots.length ? [["Gallery", "#gallery"]] : [], [["Friends", "#friends"]], others.length ? [["More games", "#games"]] : []).forEach(function (l) { nav.appendChild(el("a", { href: l[1], text: l[0] })); });
+  [["Watch", "#watch"], ["The game", "#game"]].concat(shots.length ? [["Gallery", "#gallery"]] : [], (chars.length ? [["Friends", "#friends"]] : []), others.length ? [["More games", "#games"]] : []).forEach(function (l) { nav.appendChild(el("a", { href: l[1], text: l[0] })); });
   if (S.legal && S.legal.privacyUrl) nav.appendChild(el("a", { href: S.legal.privacyUrl, text: "Privacy", rel: "noopener" }));
   if (S.legal && S.legal.termsUrl) nav.appendChild(el("a", { href: S.legal.termsUrl, text: "Terms", rel: "noopener" }));
   if (S.brand.contactEmail) $("mail").href = "mailto:" + S.brand.contactEmail; else $("mail").hidden = true;
