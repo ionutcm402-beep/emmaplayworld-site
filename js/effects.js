@@ -36,7 +36,7 @@
   }
   function count() { return Math.round(Math.min(26, W / 34)); }
   function make(y) {
-    var r = 6 + Math.random() * 22;
+    var r = 3 + Math.random() * 9;
     return { x: Math.random() * W, y: y == null ? H + r + Math.random() * H * 0.3 : y, r: r,
              v: 0.25 + Math.random() * 0.55, ph: Math.random() * 6.28, c: HUES[(Math.random() * 6) | 0] };
   }
