@@ -216,6 +216,29 @@
   if (!chars.length) {
     $("friends").hidden = true;
     Array.prototype.forEach.call(document.querySelectorAll('a[href="#friends"]'), function (n) { n.hidden = true; });
+  } else if (chars.some(function (c) { return c && c.poses && c.poses.length; })) {
+    /* Pose panels: one colourful panel per friend with a row of pose pictures. */
+    $("stage").hidden = true;
+    $("friendsHint").textContent = "Tap a pose to pop some bubbles.";
+    var panels = $("panels"); panels.hidden = false;
+    chars.forEach(function (f) {
+      if (!f.poses || !f.poses.length) return;
+      var row = el("div", { class: "pose-row", role: "list" });
+      f.poses.forEach(function (ps) {
+        var t = el("button", { class: "pose", type: "button", role: "listitem", "aria-label": f.name + ": " + ps.label }, [
+          el("img", { src: ps.src, alt: f.name + " " + ps.label.toLowerCase(), loading: "lazy", width: "536", height: "652" })
+        ]);
+        t.addEventListener("click", function () {
+          t.classList.remove("boing"); void t.offsetWidth; t.classList.add("boing");
+          if (window.burst) { var r = t.getBoundingClientRect(); window.burst(r.left + r.width / 2, r.top + r.height / 2, 16); }
+        });
+        row.appendChild(t);
+      });
+      panels.appendChild(el("div", { class: "pose-panel", style: "--nc:" + (f.c || "#6a3fe0") + ";--nc2:" + (f.c2 || f.c || "#8a5cf7") + ";--pc:" + (f.pc || "#efe6ff") }, [
+        el("div", { class: "pose-head" }, [el("h3", { text: f.name }), el("span", { class: "pose-count", text: f.poses.length + " different poses" })]),
+        row
+      ]));
+    });
   } else {
     var picker = $("picker"), spot = $("spot"), spotImg = $("spotImg"), stage = $("stage");
     var cur = 0, auto = null, reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;

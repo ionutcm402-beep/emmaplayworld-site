@@ -309,3 +309,21 @@ section{padding-block:64px}
 .tv{box-shadow:0 0 0 5px rgba(255,255,255,.9),0 34px 70px -26px rgba(90,40,200,.5);background:linear-gradient(135deg,#fff,#fdf2fb)}
 .bar,body::before{background:rgba(214,236,255,.78)}
 @media(max-width:600px){.hero .art{border-radius:26px;box-shadow:0 0 0 4px rgba(255,255,255,.9),0 22px 46px -22px rgba(90,40,200,.5)}.hero h1{margin-top:26px}}
+
+/* friends: colourful pose panels */
+.pose-panels{display:grid;gap:34px}
+.pose-panel{position:relative;border-radius:34px;padding:22px 18px 22px;background:linear-gradient(160deg,color-mix(in srgb,var(--pc) 85%,#fff) 0,#fff 55%,color-mix(in srgb,var(--pc) 60%,#e9e0ff) 100%);box-shadow:0 0 0 5px rgba(255,255,255,.92),0 30px 60px -26px color-mix(in srgb,var(--nc) 60%,#5a2bd0)}
+.pose-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 4px 16px}
+.pose-head h3{font-size:clamp(30px,4.4vw,44px);font-weight:800;color:var(--nc);background:#fff;padding:2px 24px 4px;border-radius:999px;box-shadow:0 8px 20px -10px var(--nc)}
+.pose-count{font-weight:700;font-size:14px;color:#fff;background:linear-gradient(90deg,var(--nc2),var(--nc));padding:6px 16px;border-radius:999px}
+.pose-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pose{appearance:none;border:0;padding:0;background:#fff;border-radius:22px;overflow:hidden;cursor:pointer;aspect-ratio:268/326;box-shadow:0 0 0 3px #fff,0 12px 24px -12px color-mix(in srgb,var(--nc) 70%,#3a1c8a);transition:transform .25s var(--ease)}
+.pose img{display:block;width:100%;height:100%;object-fit:cover}
+.pose:hover{transform:translateY(-5px) rotate(-1deg)}
+.pose.boing{animation:poseboing .55s var(--ease)}
+@keyframes poseboing{30%{transform:scale(1.09) rotate(2deg)}60%{transform:scale(.97)}}
+@media(max-width:760px){
+  .pose-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:6px 4px 14px;margin:0 -4px;-webkit-overflow-scrolling:touch;border-radius:0 0 24px 24px}
+  .pose{flex:0 0 58%;max-width:230px;scroll-snap-align:center}
+}
+@media(prefers-reduced-motion:reduce){.pose.boing{animation:none}.pose:hover{transform:none}}
