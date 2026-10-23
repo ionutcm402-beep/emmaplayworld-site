@@ -147,6 +147,7 @@
     });
     poster.addEventListener("click", function (e) { e.preventDefault(); playVideo(); });
     selectVideo(0);
+    if (videos.length < 2) $("eps").hidden = true;
   } else {
     $("eps").hidden = true;
     if (main) $("capT").textContent = main.name;
