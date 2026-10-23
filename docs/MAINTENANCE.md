@@ -45,3 +45,5 @@ In Cloudflare: Workers & Pages → emmaplayworld-site → Deployments → pick a
 
 ## After changing CSS or JS
 `index.html` links the CSS and scripts with a `?v=...` suffix. Change that suffix (for example `?v=20261101`) whenever you edit `css/`, `js/` or `config/`, so visitors' phones fetch the new files instead of an old cached copy.
+
+**Replacing a picture:** files in `assets/` are cached by browsers for a year, so never overwrite a picture under the same name. Save the new picture with a new file name and point the config at it.

@@ -113,6 +113,6 @@ window.SITE = {
     { name: "Kitty", img: "assets/friends/kitty.webp", thumb: "assets/friends/kitty-thumb.webp", c: "#e0661a", pc: "#ffe6d2", c2: "#ff8a3d",
       pose: { src: "assets/poses/kitty-circle.webp", alt: "Kitty jumping for joy" } },
     { name: "Bunny", img: "assets/friends/bunny.webp", thumb: "assets/friends/bunny-thumb.webp", c: "#e2479a", pc: "#ffe0ef", c2: "#9b5cf0",
-      pose: { src: "assets/poses/bunny-circle.webp", alt: "Bunny sitting and waving" } }
+      pose: { src: "assets/poses/bunny-wave.webp", alt: "Bunny sitting and waving" } }
   ]
 };
