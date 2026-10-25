@@ -1,52 +1,38 @@
 /*
- * Emma Play World: builds the page from config/site.config.js.
- * No content is hard-coded here. To change links, availability, videos,
- * characters or games, edit the config file.
+ * Emma Play World: builds the home page from config/site.config.js.
+ * No content is hard-coded here. To change games, links, availability,
+ * videos, screenshots or characters, edit the config file.
  */
 (function () {
   "use strict";
   var S = window.SITE;
   if (!S) { return; }
-  var COLORS = ["c-pink", "c-orange", "c-yellow", "c-green", "c-blue", "c-purple"];
-  var CHIP = ["--b-pink", "--b-blue", "--b-orange", "--b-green", "--b-purple", "--b-yellow"];
 
   /* ---------- helpers ---------- */
   function $(id) { return document.getElementById(id); }
-  function get(path) {
-    return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, S);
-  }
+  function get(path) { return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, S); }
   function el(tag, props, kids) {
     var n = document.createElement(tag);
     Object.keys(props || {}).forEach(function (k) {
       if (k === "text") n.textContent = props[k];
       else if (k === "class") n.className = props[k];
-      else if (k === "style") n.setAttribute("style", props[k]);
       else n.setAttribute(k, props[k]);
     });
     (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
     return n;
   }
-  function svg(path, vb) {
-    var ns = "http://www.w3.org/2000/svg";
-    var s = document.createElementNS(ns, "svg");
-    s.setAttribute("viewBox", vb || "0 0 24 24"); s.setAttribute("aria-hidden", "true");
-    var p = document.createElementNS(ns, "path"); p.setAttribute("d", path); s.appendChild(p);
-    return s;
+  function svgPlay() {
+    var ns = "http://www.w3.org/2000/svg", s = document.createElementNS(ns, "svg"), p = document.createElementNS(ns, "path");
+    s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("aria-hidden", "true"); p.setAttribute("d", "M8 5.5v13l11-6.5z"); s.appendChild(p); return s;
   }
-  var ICONS = {
-    play: "M8 5.5v13l11-6.5z",
-    star: "M12 2.8l2.8 6 6.5.8-4.8 4.5 1.3 6.4L12 17.2l-5.8 3.3 1.3-6.4L2.7 9.6l6.5-.8z",
-    bulb: "M12 2a7 7 0 00-4 12.7V17a1 1 0 001 1h6a1 1 0 001-1v-2.3A7 7 0 0012 2zm-2 18h4v1.5a1 1 0 01-1 1h-2a1 1 0 01-1-1z"
-  };
+  function parts(name) { var w = name.split(" "); return w; }
 
-  /* ---------- plain text bindings ---------- */
   Array.prototype.forEach.call(document.querySelectorAll("[data-cfg]"), function (n) {
-    var v = get(n.getAttribute("data-cfg"));
-    if (typeof v === "string" && v) n.textContent = v;
+    var v = get(n.getAttribute("data-cfg")); if (typeof v === "string" && v) n.textContent = v;
   });
 
-  var games = Array.isArray(S.games) ? S.games : [];
-  var main = games.filter(function (g) { return g.featured; })[0] || games[0];
+  var games = (Array.isArray(S.games) ? S.games : []).filter(function (g) { return g && g.id && g.name; });
+  var chars = Array.isArray(S.characters) ? S.characters : [];
   var channel = (S.youtube && S.youtube.url) || "";
 
   /* ---------- store badges ---------- */
@@ -82,8 +68,9 @@
     ])]);
   }
 
+
   function renderStores(game) {
-    var host = $("stores"); host.textContent = "";
+    var host = el("div", { class: "stores" });
     Object.keys(STORES).forEach(function (kind) {
       var cfg = game.stores && game.stores[kind];
       var st = storeState(kind, cfg);
@@ -91,138 +78,113 @@
       var soon = st === "soon";
       var cls = "badge" + (soon ? " soon" : "") + (cfg.badge ? " has-art" : "");
       var badge = soon
-        ? el("div", { class: cls, role: "img", "aria-label": STORES[kind].label + " version coming soon, not yet available" }, [badgeBody(kind, cfg, true, game.name)])
+        ? el("div", { class: cls, role: "img", "aria-label": STORES[kind].label + " version of " + game.name + " coming soon, not yet available" }, [badgeBody(kind, cfg, true, game.name)])
         : el("a", { class: cls, href: cfg.url, target: "_blank", rel: "noopener", "aria-label": "Get " + game.name + " on " + STORES[kind].label }, [badgeBody(kind, cfg, false, game.name)]);
-      host.appendChild(el("div", { class: "slot" }, [soon ? el("span", { class: "status soon", text: "Coming soon" }) : null, badge]));
+      host.appendChild(el("div", { class: "slot" }, [soon ? el("span", { class: "status", text: "Coming soon" }) : null, badge]));
     });
+    return host;
   }
+  function anyLive(g) { return Object.keys(STORES).some(function (k) { return storeState(k, g.stores && g.stores[k]) === "available"; }); }
+  function anySoon(g) { return Object.keys(STORES).some(function (k) { return storeState(k, g.stores && g.stores[k]) === "soon"; }); }
 
-  if (main) {
-    $("gameName").textContent = main.name;
-    if (main.tagline) $("gameTagline").textContent = main.tagline;
-    $("signName").textContent = "";
-    var parts = main.name.split(" ");
-    $("signName").appendChild(document.createTextNode(parts.slice(0, -1).join(" ") + " "));
-    $("signName").appendChild(el("em", { text: parts[parts.length - 1] }));
-    renderStores(main);
-  }
+  /* ---------- top navigation ---------- */
+  var nav = $("mainNav"); nav.textContent = "";
+  games.forEach(function (g) { nav.appendChild(el("a", { href: "#" + g.id, text: g.name })); });
+  if (S.brand.contactEmail) nav.appendChild(el("a", { class: "cta", href: "mailto:" + S.brand.contactEmail, text: "Say hello" }));
 
-  /* ---------- video showcase ---------- */
-  var screen = $("screen"), poster = $("poster");
-  var letters = "ABCDEFGHIJKLMNOPQR".split("");
-  letters.forEach(function (l, i) {
-    var b = el("b", { text: l, style: "--c:var(" + ["--b-red", "--b-orange", "--b-yellow", "--b-green", "--b-blue", "--b-purple"][i % 6] + ");--i:" + i });
-    $("pboard").appendChild(b);
+  /* ---------- hero: one card per product ---------- */
+  var picks = $("picks"); picks.textContent = "";
+  games.forEach(function (g) {
+    var pic = el("span", { class: "pic" }, [g.art && g.art.src ? el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" }) : null]);
+    var body = el("span", { class: "body" }, [
+      el("span", { class: "pill", text: g.kind || "App" }),
+      el("h2", { text: g.name }),
+      g.tagline ? el("p", { text: g.tagline }) : null,
+      anySoon(g) && !anyLive(g) ? el("span", { class: "soon-note", text: "Coming soon" }) : null,
+      el("span", { class: "go", text: "Explore " + g.name + " →" })
+    ]);
+    picks.appendChild(el("a", { class: "pick t-" + g.theme + " rise", href: "#" + g.id }, [pic, body]));
   });
-  if (main && main.cover && main.cover.src) {
-    poster.classList.add("has-cover");
-    poster.appendChild(el("img", { class: "cover", src: main.cover.src, alt: main.cover.alt || "", width: "1280", height: "720" }));
-    poster.setAttribute("aria-label", "Watch the " + main.name + " trailer");
-  }
-  if (channel) {
-    $("ytLink").href = channel; $("subBtn").href = channel + "?sub_confirmation=1"; poster.href = channel;
-  } else {
-    $("ytLink").hidden = true; $("subBtn").hidden = true;
+  if (S.brand.banner && S.brand.banner.src) {
+    $("hero").appendChild(el("div", { class: "banner rise" }, [el("img", { src: S.brand.banner.src, alt: S.brand.banner.alt || "", width: "1200", height: "675", loading: "lazy" })]));
   }
 
-  var videos = ((main && main.videos) || []).filter(function (v) { return v && /^[\w-]{11}$/.test(v.id || ""); });
-  var current = 0;
-  function watchUrl(v) { return "https://www.youtube.com/watch?v=" + v.id; }
-  function selectVideo(i) {
-    current = i; var v = videos[i];
-    $("capT").textContent = v.title || main.name;
-    $("capS").textContent = v.note || "Watch on YouTube";
-    poster.href = watchUrl(v);
-    Array.prototype.forEach.call(document.querySelectorAll(".ep"), function (e, k) { e.setAttribute("aria-pressed", String(k === i)); });
-    var old = screen.querySelector("iframe"); if (old) old.remove();
-    poster.hidden = false;
+  /* ---------- one section per product ---------- */
+  var viewer = $("viewer");
+  function openShot(s) {
+    $("viewerImg").src = s.src; $("viewerImg").alt = s.alt || "";
+    if (viewer.showModal) viewer.showModal(); else viewer.setAttribute("open", "");
   }
-  function playVideo() {
-    var v = videos[current];
-    var f = el("iframe", { src: "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0&playsinline=1",
-      allow: "autoplay; encrypted-media; picture-in-picture", allowfullscreen: "", title: v.title || main.name });
-    screen.appendChild(f); poster.hidden = true;
-  }
-  if (videos.length) {
-    videos.forEach(function (v, i) {
-      var ic = el("span", { class: "ic", style: "--c:var(" + CHIP[i % CHIP.length] + ")" }, [svg("M0 0l10 6-10 6z", "0 0 10 12")]);
-      var b = el("button", { class: "ep", type: "button", id: "ep" + i }, [ic, el("div", {}, [el("strong", { text: v.title || "Video" }), v.note ? el("span", { text: v.note }) : null])]);
-      b.addEventListener("click", function () { selectVideo(i); });
-      $("eps").appendChild(b);
+  var closeV = function () { if (viewer.close) viewer.close(); else viewer.removeAttribute("open"); };
+  $("viewerClose").addEventListener("click", closeV);
+  viewer.addEventListener("click", function (e) { if (e.target === viewer) closeV(); });
+
+  function featuresBlock(g) {
+    if (!g.features || !g.features.length) return null;
+    var grid = el("div", { class: "feats rise" });
+    g.features.forEach(function (f) {
+      grid.appendChild(el("div", { class: "feat" }, [
+        el("span", { class: "em c-" + (f.color || "pink"), "aria-hidden": "true", text: f.emoji || "★" }),
+        el("h3", { text: f.title }), el("p", { text: f.text })
+      ]));
     });
-    poster.addEventListener("click", function (e) { e.preventDefault(); playVideo(); });
-    selectVideo(0);
-    if (videos.length < 2) $("eps").hidden = true;
-  } else {
-    $("eps").hidden = true;
-    if (main) $("capT").textContent = main.name;
-    $("capS").textContent = channel ? "Watch on YouTube" : "";
-    if (!channel) poster.removeAttribute("href");
+    return el("div", {}, [el("h3", { class: "sub", text: g.features.length > 3 ? "What's inside" : "How it works" }), grid]);
   }
 
-  /* Real screenshots, only when supplied in the config. Tap one to enlarge it. */
-  var shots = ((main && main.screenshots) || []).filter(function (s) { return s && s.src; });
-  if (shots.length) {
-    var viewer = $("viewer");
+  function momentsBlock(g) {
+    if (!g.moments || !g.moments.length) return null;
+    var box = el("div", { class: "moments rise" });
+    g.moments.forEach(function (m) { box.appendChild(el("figure", {}, [el("img", { src: m.src, alt: m.alt || "", loading: "lazy", width: "600", height: "450" })])); });
+    return el("div", {}, [el("h3", { class: "sub", text: "A little garden of habits" }), box]);
+  }
+
+  function videoBlock(g) {
+    var vids = (g.videos || []).filter(function (v) { return v && /^[\w-]{11}$/.test(v.id || ""); });
+    if (!vids.length) return null;
+    var v = vids[0];
+    var screen = el("div", { class: "screen" });
+    var poster = el("a", { class: "poster", href: "https://www.youtube.com/watch?v=" + v.id, target: "_blank", rel: "noopener", "aria-label": "Play: " + (v.title || g.name) }, [
+      g.cover && g.cover.src ? el("img", { src: g.cover.src, alt: g.cover.alt || "", width: "1280", height: "720", loading: "lazy" }) : null,
+      el("span", { class: "playbtn", "aria-hidden": "true" }, [svgPlay()])
+    ]);
+    if (g.cover && g.cover.src) poster.classList.add("has-cover");
+    poster.addEventListener("click", function (e) {
+      e.preventDefault();
+      screen.appendChild(el("iframe", { src: "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0&playsinline=1",
+        allow: "autoplay; encrypted-media; picture-in-picture", allowfullscreen: "", title: v.title || g.name }));
+      poster.hidden = true;
+    });
+    screen.appendChild(poster);
+    var cap = el("div", { class: "cap" }, [el("div", {}, [el("strong", { text: v.title || g.name }), el("span", { text: v.note || "Watch on YouTube" })])]);
+    if (channel) cap.appendChild(el("a", { class: "btn", href: channel + "?sub_confirmation=1", target: "_blank", rel: "noopener", text: "Subscribe on YouTube" }));
+    return el("div", {}, [el("h3", { class: "sub", text: "Watch " + g.name }), el("div", { class: "video rise" }, [screen, cap])]);
+  }
+
+  function shotsBlock(g) {
+    var shots = (g.screenshots || []).filter(function (s) { return s && s.src; });
+    if (!shots.length) return null;
+    var row = el("div", { class: "shots rise", role: "list" });
     shots.forEach(function (s) {
-      var img = el("img", { src: s.src, alt: s.alt || (main.name + " screenshot"), loading: "lazy" });
-      var b = el("button", { type: "button", class: "shot", "aria-label": "Enlarge: " + (s.alt || main.name + " screenshot") }, [img]);
-      b.addEventListener("click", function () {
-        $("viewerImg").src = s.src; $("viewerImg").alt = s.alt || "";
-        if (viewer.showModal) viewer.showModal(); else viewer.setAttribute("open", "");
-      });
-      $("shots").appendChild(b);
+      var b = el("button", { type: "button", class: "shot", role: "listitem", "aria-label": "Enlarge: " + (s.alt || g.name + " screenshot") }, [el("img", { src: s.src, alt: s.alt || (g.name + " screenshot"), loading: "lazy" })]);
+      b.addEventListener("click", function () { openShot(s); });
+      row.appendChild(b);
     });
-    var closeV = function () { if (viewer.close) viewer.close(); else viewer.removeAttribute("open"); };
-    $("viewerClose").addEventListener("click", closeV);
-    viewer.addEventListener("click", function (e) { if (e.target === viewer) closeV(); });
-    $("gallery").hidden = false; $("navGallery").hidden = false;
+    return el("div", {}, [el("h3", { class: "sub", text: "Take a peek inside" }), row, el("p", { class: "hint", text: "Tap a picture to see it bigger" })]);
   }
 
-  /* ---------- the game: letter board ---------- */
-  var board = main && main.board;
-  if (board) {
-    var t = $("learnTitle"); t.textContent = "";
-    t.appendChild(document.createTextNode((board.title || "") + " "));
-    if (board.titleAccent) t.appendChild(el("em", { text: board.titleAccent }));
-    if (board.intro) $("learnIntro").textContent = board.intro;
-    (board.features || []).forEach(function (f) {
-      var fi = el("span", { class: "fi c-" + (f.color || "pink") }, [svg(ICONS[f.icon] || ICONS.star)]);
-      $("feats").appendChild(el("div", { class: "feat" }, [fi, el("b", { text: f.title }), el("span", { text: f.text })]));
-    });
-    if (board.image && board.image.src) {
-      /* a real screenshot of the game instead of the bubble toy */
-      var tray = $("board").parentNode; tray.className = "tray shot-tray";
-      $("board").remove();
-      tray.appendChild(el("img", { src: board.image.src, alt: board.image.alt || (main.name + " screenshot"), loading: "lazy" }));
-    } else {
-      (board.keys || []).forEach(function (k, i) {
-        var b = el("button", { class: "pp-bubble " + COLORS[i % 6], type: "button", "aria-label": "Pop " + k, style: "--i:" + i, text: k });
-        b.addEventListener("click", function () {
-          b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
-          var r = b.getBoundingClientRect();
-          if (window.burst) window.burst(r.left + r.width / 2, r.top + r.height / 2, 10);
-        });
-        b.addEventListener("animationend", function (e) { if (e.animationName === "pop") b.classList.remove("pop"); });
-        $("board").appendChild(b);
-      });
-    }
-  } else {
-    $("game").hidden = true;
+  function trustBlock(g) {
+    if (!(g.trust && g.trust.length) && !g.note) return null;
+    var kids = [];
+    if (g.trust && g.trust.length) { var ul = el("ul", { class: "trust" }); g.trust.forEach(function (t) { ul.appendChild(el("li", { text: t })); }); kids.push(ul); }
+    if (g.note) kids.push(el("p", { class: "note", text: g.note }));
+    return el("div", { class: "rise", style: "margin-top:30px" }, kids);
   }
 
-  /* ---------- Emma's friends ---------- */
-  var chars = Array.isArray(S.characters) ? S.characters : [];
-  if (!chars.length) {
-    $("friends").hidden = true;
-    Array.prototype.forEach.call(document.querySelectorAll('a[href="#friends"]'), function (n) { n.hidden = true; });
-  } else if (chars.some(function (c) { return c && c.poses && c.poses.length; })) {
-    /* One big picture per friend; tapping it pops bubbles and shows the next pose. */
-    $("stage").hidden = true;
-    $("friendsHint").textContent = "Tap a friend to change their pose!";
-    var duo = $("panels"); duo.hidden = false;
-    chars.forEach(function (f, i) {
-      if (!f.poses || !f.poses.length) return;
+  function friendsBlock() {
+    var withPoses = chars.filter(function (c) { return c && c.poses && c.poses.length; });
+    if (!withPoses.length) return null;
+    var duo = el("div", { class: "duo rise" });
+    withPoses.forEach(function (f, i) {
       var idx = 0, img = el("img", { src: f.poses[0].src, alt: f.poses[0].alt || f.name, loading: "lazy", width: "500", height: "500" });
       var b = el("button", { class: "fr-card", type: "button", "aria-label": f.name + ": tap to change pose",
         style: "--nc:" + (f.c || "#6a3fe0") + ";--nc2:" + (f.c2 || f.c || "#8a5cf7") + ";--pc:" + (f.pc || "#efe6ff") + ";--tilt:" + (i % 2 ? "3deg" : "-3deg") }, [
@@ -245,77 +207,49 @@
       });
       duo.appendChild(b);
     });
-  } else {
-    var picker = $("picker"), spot = $("spot"), spotImg = $("spotImg"), stage = $("stage");
-    var cur = 0, auto = null, reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var pickFriend = function (i, burst) {
-      cur = (i + chars.length) % chars.length; var f = chars[cur];
-      spotImg.classList.add("out");
-      setTimeout(function () { spotImg.src = f.img; spotImg.alt = f.name; spotImg.classList.remove("out"); }, 180);
-      var nm = $("frName"); nm.textContent = f.name; nm.style.setProperty("--nc", f.c || "");
-      $("frCount").textContent = (cur + 1) + " of " + chars.length;
-      var say = $("spotSay"); say.hidden = !f.say; say.textContent = f.say || "";
-      stage.style.setProperty("--tint", f.pc || "#efe6ff");
-      Array.prototype.forEach.call(picker.children, function (b, k) {
-        b.setAttribute("aria-pressed", String(k === cur)); b.style.setProperty("--nc2", chars[k].c || "");
-      });
-      spot.classList.remove("boing"); void spot.offsetWidth; spot.classList.add("boing");
-      if (burst && window.burst) { var r = spot.getBoundingClientRect(); window.burst(r.left + r.width / 2, r.top + r.height / 2, 22); }
-    };
-    var userPick = function (i) { if (auto) { clearInterval(auto); auto = null; } pickFriend(i, true); };
-    chars.forEach(function (f, i) {
-      var b = el("button", { class: "pick", type: "button", id: "pick" + i, "aria-label": f.name, style: "--pc:" + (f.pc || "#ece2ff") }, [
-        el("span", { class: "av" }, [el("img", { src: f.thumb || f.img, alt: "", loading: "lazy" })]),
-        el("span", { class: "nm", text: f.name })
-      ]);
-      b.addEventListener("click", function () { userPick(i); });
-      picker.appendChild(b);
-    });
-    $("prevF").addEventListener("click", function () { userPick(cur - 1); });
-    $("nextF").addEventListener("click", function () { userPick(cur + 1); });
-    var sx = null;
-    spot.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
-    spot.addEventListener("touchend", function (e) {
-      if (sx == null) return; var dx = e.changedTouches[0].clientX - sx;
-      if (Math.abs(dx) > 40) userPick(cur + (dx < 0 ? 1 : -1)); sx = null;
-    });
-    pickFriend(0, false);
-    if (!reduce) auto = setInterval(function () { pickFriend(cur + 1, false); }, 4500);
+    return el("div", { id: "friends" }, [el("h3", { class: "sub", text: "Meet Emma's friends" }), el("p", { class: "hintf", text: "Tap a friend to change their pose!" }), duo]);
   }
 
-  /* ---------- more games (every game that is not the featured one) ---------- */
-  var others = games.filter(function (g) { return g !== main; });
-  if (others.length) {
-    others.forEach(function (g) {
-      var live = Object.keys(STORES).filter(function (k) { return storeState(k, g.stores && g.stores[k]) === "available"; })[0];
-      var card = el(live ? "a" : "article", { class: "game", style: g.gradient ? "--g:" + g.gradient : "" }, [
-        el("span", { class: "when", text: live ? "Available now" : "Coming soon" }),
-        el("i", { style: "width:96px;height:96px;right:26px;top:36px" }),
-        el("i", { style: "width:46px;height:46px;right:120px;top:22px;animation-delay:-3s" }),
-        el("h3", { text: g.name }),
-        g.tagline ? el("p", { text: g.tagline }) : null
-      ]);
-      if (live) { card.href = g.stores[live].url; card.target = "_blank"; card.rel = "noopener"; card.setAttribute("aria-label", g.name + " on " + STORES[live].label); }
-      $("moreGames").appendChild(card);
-    });
-    $("games").hidden = false; $("navGames").hidden = false;
-  }
+  var host = $("products"); host.textContent = "";
+  games.forEach(function (g) {
+    var w = parts(g.name);
+    var name = el("h2", { class: "name" }); name.textContent = g.name;
+    var copy = el("div", { class: "copy" }, [
+      el("span", { class: "pill", text: g.kind || "App" }), name,
+      g.tagline ? el("p", { class: "tagline", text: g.tagline }) : null,
+      g.intro ? el("p", { class: "intro", text: g.intro }) : null,
+      renderStores(g),
+      g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null
+    ]);
+    var art = g.art && g.art.src ? el("div", { class: "art rise" }, [el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" })]) : null;
+    var sec = el("section", { class: "prod theme-" + g.theme, id: g.id, "aria-label": g.name }, [
+      el("div", { class: "wrap" }, [
+        el("div", { class: "prod-head" }, [copy, art]),
+        featuresBlock(g), momentsBlock(g), videoBlock(g), shotsBlock(g), trustBlock(g), g.friends ? friendsBlock() : null
+      ])
+    ]);
+    host.appendChild(sec);
+  });
+  if (!games.length) host.hidden = true;
 
-  /* ---------- footer ---------- */
+  /* ---------- closing + footer ---------- */
+  var ci = S.brand.closingImage;
+  if (ci && ci.src) $("closingArt").appendChild(el("img", { src: ci.src, alt: ci.alt || "", width: "900", height: "600", loading: "lazy" })); else $("closingArt").hidden = true;
   $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.brand.name || "") + (S.brand.domain ? " · " + S.brand.domain : "");
-  var nav = $("footNav");
-  [["Watch", "#watch"], ["The game", "#game"]].concat(shots.length ? [["Gallery", "#gallery"]] : [], (chars.length ? [["Friends", "#friends"]] : []), others.length ? [["More games", "#games"]] : []).forEach(function (l) { nav.appendChild(el("a", { href: l[1], text: l[0] })); });
-  if (S.legal && S.legal.privacyUrl) nav.appendChild(el("a", { href: S.legal.privacyUrl, text: "Privacy", rel: "noopener" }));
-  if (S.legal && S.legal.termsUrl) nav.appendChild(el("a", { href: S.legal.termsUrl, text: "Terms", rel: "noopener" }));
+  var fn = $("footNav"); fn.textContent = "";
+  games.forEach(function (g) { fn.appendChild(el("a", { href: "#" + g.id, text: g.name })); });
+  if (S.legal && S.legal.privacyUrl) fn.appendChild(el("a", { href: S.legal.privacyUrl, text: "Privacy" }));
+  if (S.legal && S.legal.termsUrl) fn.appendChild(el("a", { href: S.legal.termsUrl, text: "Terms" }));
+  if (channel) fn.appendChild(el("a", { href: channel, target: "_blank", rel: "noopener", text: "YouTube" }));
   if (S.brand.contactEmail) $("mail").href = "mailto:" + S.brand.contactEmail; else $("mail").hidden = true;
 
-  /* ---------- gentle rise for sections below the fold (content is visible at rest) ---------- */
+  /* ---------- gentle rise for things below the fold (content is visible at rest) ---------- */
   try {
     var items = Array.prototype.filter.call(document.querySelectorAll(".rise"), function (n) { return n.getBoundingClientRect().top > window.innerHeight; });
     items.forEach(function (n) { n.classList.add("pre"); });
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.08 });
     items.forEach(function (n) { io.observe(n); });
   } catch (e) { /* the page works without it */ }
 })();
@@ -337,13 +271,8 @@
       box.appendChild(fx);
     }
     function run() {
-      addFx(document.querySelector(".hero .art"), 16);
-      addFx(document.querySelector(".poster.has-cover"), 14);
+      Array.prototype.forEach.call(document.querySelectorAll(".art,.banner,.closing-art,.poster.has-cover,.moments figure"), function (n) { addFx(n, 12); });
       Array.prototype.forEach.call(document.querySelectorAll(".fr-pic"), function (n) { addFx(n, 9); });
-      var si = document.querySelector(".sign img");
-      if (si && !si.parentNode.classList.contains("sign-art")) {
-        var w = document.createElement("div"); w.className = "sign-art"; si.parentNode.insertBefore(w, si); w.appendChild(si); addFx(w, 12);
-      }
     }
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(run, 0); }); else setTimeout(run, 0);
   } catch (e) { /* decoration only */ }

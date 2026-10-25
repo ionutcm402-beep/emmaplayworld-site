@@ -2,7 +2,7 @@
  * Emma Play World: central site configuration.
  *
  * Almost everything that changes over time lives in this one file:
- * store links, availability, videos, characters and future games.
+ * the apps and games, store links, videos, screenshots and characters.
  * The page (index.html + js/) reads it and builds itself, so you normally
  * never need to edit the HTML or CSS.
  *
@@ -19,7 +19,11 @@ window.SITE = {
     domain: "emmaplayworld.com",
     url: "https://emmaplayworld.com",
     contactEmail: "contact.emmaplayworld@gmail.com",
-    sign: "with Emma and her friends. Made for little moments of fun."
+    tagline: "Little games. Big smiles.",
+    intro: "A bubble-popping game and a happy habit tracker, made with Emma and her friends.",
+    sign: "with Emma and her friends. Made for little moments of fun.",
+    banner: { src: "assets/bloom/brand-banner.webp", alt: "Emma Play World: Emma lying in the grass with Bunny and Kitty, colourful bubbles and a rainbow castle behind them" },
+    closingImage: { src: "assets/video/friends-hug.webp", alt: "Emma hugging Bunny and Kitty among the flowers" }
   },
 
   youtube: {
@@ -27,44 +31,48 @@ window.SITE = {
     url: "https://www.youtube.com/@emmapucpuc"
   },
 
-  /* Optional. Shown in the footer only when set. Add the real URLs once they exist. */
+  /* Footer links (only shown when set). */
   legal: {
     privacyUrl: "privacy.html",
     termsUrl: "terms.html"
   },
 
   /*
-   * GAMES. Add a new game by adding an object to this list.
-   * The game with featured:true fills the top of the homepage.
-   * Every other game appears as a card in the "More games" section.
+   * The apps and games of Emma Play World. Add one by adding an object to this list.
    *
+   * theme:          "bubbles" (sky blue and pink) or "bloom" (lavender and pink)
    * stores.<store>.status: "available" | "coming-soon" | "hidden"
    * stores.<store>.url:    the real listing URL (required for "available")
-   * stores.<store>.badge:  path to the OFFICIAL badge image, e.g. "assets/badges/google-play.png"
-   *                        (leave "" to show a plain placeholder badge)
+   * stores.<store>.badge:  path to the OFFICIAL badge image
+   * Optional blocks (each appears only when filled in): features, trust, cover + videos,
+   * screenshots, friends (shows the characters below), note, privacyUrl.
    */
   games: [
     {
-      id: "puc-puc-bubbles",
-      featured: true,
+      id: "bubbles",
+      theme: "bubbles",
+      kind: "Game",
       name: "Puc Puc Bubbles",
       tagline: "Play, learn and explore with Emma and her friends.",
+      intro: "Choose a board of letters, numbers, animals and more, and pop away with Emma and her friends.",
+      art: { src: "assets/video/hero-art.webp", alt: "Puc Puc Bubbles: Emma, Bunny and Kitty playing with colourful bubbles in a magical garden" },
 
       stores: {
-        /* Set to "available" and add the verified listing URL on launch day. */
         googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
         appStore:   { status: "coming-soon", url: "", badge: "assets/badges/app-store.png" }
       },
 
-      /* YouTube videos about this game. Add real ones; leave [] until then.
-         { id: "YOUTUBE_VIDEO_ID", title: "Real title", note: "Short real description" } */
-      cover: { src: "assets/video/trailer-cover.webp", alt: "Puc Puc Bubbles with Emma, Bunny and Kitty. Watch the game trailer." },
-      videos: [
-        { id: "jwZMuZUtWeo", title: "Puc Puc Bubbles game trailer", note: "Watch the trailer on YouTube" }
+      features: [
+        { emoji: "🫧", color: "pink",   title: "Free Play", text: "Pop any bubble you like!" },
+        { emoji: "🔍", color: "blue",   title: "Discover",  text: "Pop to find what's hiding!" },
+        { emoji: "⭐", color: "yellow", title: "Boards",    text: "Choose what to pop" }
       ],
 
-      /* Real game screenshots, e.g. { src: "assets/screens/free-play.jpg", alt: "Free play board" }.
-         The page shows them in a gallery when this list is not empty. */
+      cover: { src: "assets/video/trailer-cover.webp", alt: "Puc Puc Bubbles with Emma, Bunny and Kitty. Watch the game video." },
+      videos: [
+        { id: "jwZMuZUtWeo", title: "Puc Puc Bubbles game video", note: "Watch the video on YouTube" }
+      ],
+
       screenshots: [
         { src: "assets/screens/home.webp",               alt: "Puc Puc Bubbles home screen with Emma, Bunny and Kitty under a rainbow and a big Play button" },
         { src: "assets/screens/free-play-letters.webp",  alt: "Free Play on the Letters board: rows of glossy rainbow letter bubbles" },
@@ -73,41 +81,54 @@ window.SITE = {
         { src: "assets/screens/explore.webp",            alt: "Explore screen with Free Play and Discover, plus Boards and Collection" }
       ],
 
-      /* "The game" section. Wording comes from the game's own Explore screen.
-         image: a real screenshot shown in the section (no image = a small pop-able bubble toy from keys). */
-      board: {
-        title: "Pop, play and",
-        titleAccent: "explore",
-        intro: "Choose a board of letters, numbers, animals and more, and pop away with Emma and her friends.",
-        image: { src: "assets/screens/free-play-letters.webp", alt: "Free Play on the Letters board in Puc Puc Bubbles: rows of glossy rainbow letter bubbles with Emma and Kitty below" },
-        features: [
-          { icon: "play",  color: "pink",   title: "Free Play", text: "Pop any bubble you like!" },
-          { icon: "bulb",  color: "blue",   title: "Discover",  text: "Pop to find what's hiding!" },
-          { icon: "star",  color: "yellow", title: "Boards",    text: "Choose what to pop" }
-        ]
-      }
-    }
+      friends: true,
+      privacyUrl: "privacy.html#app"
+    },
 
-    /* EXAMPLE of a future game (copy, fill in real details, remove the comment marks):
-    ,{
-      id: "my-next-game",
-      featured: false,
-      name: "My Next Game",
-      tagline: "One true sentence about the game.",
-      gradient: "linear-gradient(155deg,#62bcff,#4f6bf0)",
+    {
+      id: "bloom",
+      theme: "bloom",
+      kind: "Habit tracker app",
+      name: "Puc Puc Bloom",
+      tagline: "Little habits, happy hearts.",
+      intro: "A happy habit tracker for children, set up by grown-ups. Tick off small habits together and watch a garden grow.",
+      art: { src: "assets/bloom/checklist-panel.webp", alt: "Emma watering a glowing pink flower while Kitty watches, with butterflies all around" },
+      moments: [
+        { src: "assets/bloom/habits-panel.webp",   alt: "Emma watering a little flower: build healthy habits" },
+        { src: "assets/bloom/progress-panel.webp", alt: "A calendar with ticks and a gold star beside two seedlings: track daily progress" },
+        { src: "assets/bloom/garden-panel.webp",   alt: "Emma, Bunny and Kitty beside a tree full of gold stars: grow your garden" }
+      ],
+
       stores: {
-        googlePlay: { status: "coming-soon", url: "", badge: "" },
+        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
         appStore:   { status: "hidden",      url: "", badge: "" }
-      }
+      },
+
+      features: [
+        { emoji: "✅", color: "green",  title: "Tick it off",       text: "Tap a habit when it's done. Emma cheers when the day is complete." },
+        { emoji: "🫙", color: "yellow", title: "Star Jar",          text: "Every ticked habit drops a star in the jar. Fill it up to earn a treat." },
+        { emoji: "🌱", color: "green",  title: "Grow a garden",     text: "A little garden grows with every tick." },
+        { emoji: "🏷️", color: "pink",   title: "Sticker book",      text: "Collect happy stickers along the way." },
+        { emoji: "🌈", color: "purple", title: "Month ring",        text: "Watch the month fill with colour on the Progress screen." },
+        { emoji: "🌸", color: "blue",   title: "Your week in bloom", text: "A friendly recap of how the week went." }
+      ],
+
+      trust: ["No ads", "No accounts", "Nothing leaves the device"],
+      note: "Free to try with up to 2 habits. Premium (a yearly subscription billed by Google Play) lets you add more.",
+
+      screenshots: [
+        { src: "assets/bloom/home.webp",       alt: "Puc Puc Bloom home screen: today's habits (drink water, read a book, exercise, tidy up) with coloured tick circles and Emma with her unicorn at the top" },
+        { src: "assets/bloom/progress.webp",   alt: "Progress screen: a colourful ring showing every day of the month, with this month's percentage and streaks" },
+        { src: "assets/bloom/star-jar.webp",   alt: "Star Jar: a grown-up chooses a treat and how many stars fill the jar" },
+        { src: "assets/bloom/stickers.webp",   alt: "My sticker book: 9 of 16 stickers collected" },
+        { src: "assets/bloom/add-habit.webp",  alt: "Add a habit: pick a name, an icon, a colour and how often" },
+        { src: "assets/bloom/week-recap.webp", alt: "Your week in bloom: a weekly recap with a star for each day" }
+      ],
+
+      privacyUrl: "privacy-bloom.html"
     }
-    */
   ],
 
-  /*
-   * CHARACTERS shown in "Emma's friends" (the friends in the current game: Bunny and Kitty).
-   * say is optional. Add it only for lines a character really says in the game.
-   * c = name colour, pc = soft background colour for the name pill.
-   */
   /* "poses": square pictures (assets/poses/). The first is shown; tapping the friend shows the next one. */
   characters: [
     { name: "Kitty", img: "assets/friends/kitty.webp", thumb: "assets/friends/kitty-thumb.webp", c: "#e0661a", pc: "#ffe6d2", c2: "#ff8a3d",

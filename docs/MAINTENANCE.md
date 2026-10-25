@@ -47,3 +47,9 @@ In Cloudflare: Workers & Pages → emmaplayworld-site → Deployments → pick a
 `index.html` links the CSS and scripts with a `?v=...` suffix. Change that suffix (for example `?v=20261101`) whenever you edit `css/`, `js/` or `config/`, so visitors' phones fetch the new files instead of an old cached copy.
 
 **Replacing a picture:** files in `assets/` are cached by browsers for a year, so never overwrite a picture under the same name. Save the new picture with a new file name and point the config at it.
+
+## Two products (game + app)
+The home page is built from `games` in `config/site.config.js` (Puc Puc Bubbles, Puc Puc Bloom). Each entry has its own
+store badges, features, screenshots and (optional) video, so a third product is just another entry.
+Home-page styles are in `css/home.css`; `css/styles.css` is now used only by the legal pages.
+Bloom pictures: `assets/bloom/` (real app screenshots use sample habits). Never overwrite a picture; use a new file name.
