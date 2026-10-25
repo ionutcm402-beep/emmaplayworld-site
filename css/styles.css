@@ -368,3 +368,10 @@ h1,h2,h3{font-weight:700;letter-spacing:0}
 .feat span{font-size:14px}
 .hero h1{background:none;-webkit-text-fill-color:#6a3fe0;color:#6a3fe0;filter:drop-shadow(0 3px 0 rgba(91,50,214,.18))}
 .hero h1 em{-webkit-text-fill-color:#e34fb8;color:#e34fb8}
+
+.legal .pick{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:10px;margin:14px 0 6px}
+.legal .pick a{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border-radius:999px;background:#fff;color:var(--grape);font-weight:800;text-decoration:none;box-shadow:inset 0 0 0 2px #e2d3ff,0 3px 10px rgba(110,60,200,.12)}
+.legal .pick a[aria-current="page"]{color:#fff;background:linear-gradient(180deg,#a26bff,#6a3fe0);box-shadow:0 4px 12px rgba(106,63,224,.3)}
+.legal h2#website,.legal h2.sect{font-size:30px;margin-top:44px;padding-top:18px;border-top:2px solid #e2d3ff}
+.legal h2#website{border-top:0;margin-top:26px;padding-top:0}
+.legal h2.psub{font-size:22px;margin-top:14px}
