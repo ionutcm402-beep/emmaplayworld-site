@@ -89,7 +89,7 @@
 
   /* ---------- top navigation ---------- */
   var nav = $("mainNav"); nav.textContent = "";
-  games.forEach(function (g) { nav.appendChild(el("a", { href: "#" + g.id, text: g.name })); });
+  games.forEach(function (g) { nav.appendChild(el("a", { href: "#" + g.id, "aria-label": g.name, text: g.short || g.name })); });
   if (S.brand.contactEmail) nav.appendChild(el("a", { class: "cta", href: "mailto:" + S.brand.contactEmail, text: "Say hello" }));
 
   /* ---------- hero: one card per product ---------- */
@@ -135,7 +135,7 @@
     if (!g.moments || !g.moments.length) return null;
     var box = el("div", { class: "moments rise" });
     g.moments.forEach(function (m) { box.appendChild(el("figure", {}, [el("img", { src: m.src, alt: m.alt || "", loading: "lazy", width: "600", height: "450" })])); });
-    return el("div", {}, [el("h3", { class: "sub", text: "A little garden of habits" }), box]);
+    return el("div", {}, [el("h3", { class: "sub", text: g.momentsTitle || "A little garden of habits" }), box]);
   }
 
   function videoBlock(g) {

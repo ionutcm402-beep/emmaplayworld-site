@@ -20,7 +20,7 @@ window.SITE = {
     url: "https://emmaplayworld.com",
     contactEmail: "contact.emmaplayworld@gmail.com",
     tagline: "Little games. Big smiles.",
-    intro: "A bubble-popping game and a happy habit tracker, made with Emma and her friends.",
+    intro: "A bubble-popping game, a happy habit tracker and a piggy bank, made with Emma and her friends.",
     sign: "with Emma and her friends. Made for little moments of fun.",
     banner: { src: "assets/bloom/brand-banner.webp", alt: "Emma Play World: Emma lying in the grass with Bunny and Kitty, colourful bubbles and a rainbow castle behind them" },
     closingImage: { src: "assets/video/friends-hug.webp", alt: "Emma hugging Bunny and Kitty among the flowers" }
@@ -40,7 +40,7 @@ window.SITE = {
   /*
    * The apps and games of Emma Play World. Add one by adding an object to this list.
    *
-   * theme:          "bubbles" (sky blue and pink) or "bloom" (lavender and pink)
+   * theme:          "bubbles" (sky blue), "bloom" (pink) or "piggy" (lilac)
    * stores.<store>.status: "available" | "coming-soon" | "hidden"
    * stores.<store>.url:    the real listing URL (required for "available")
    * stores.<store>.badge:  path to the OFFICIAL badge image
@@ -50,6 +50,7 @@ window.SITE = {
   games: [
     {
       id: "bubbles",
+      short: "Bubbles",
       theme: "bubbles",
       kind: "Game",
       name: "Puc Puc Bubbles",
@@ -87,6 +88,7 @@ window.SITE = {
 
     {
       id: "bloom",
+      short: "Bloom",
       theme: "bloom",
       kind: "Habit tracker app",
       name: "Puc Puc Bloom",
@@ -126,6 +128,51 @@ window.SITE = {
       ],
 
       privacyUrl: "privacy-bloom.html"
+    },
+
+    {
+      id: "piggy",
+      short: "Piggy",
+      theme: "piggy",
+      kind: "Piggy bank app",
+      name: "Puc Puc Piggy",
+      tagline: "Little coins, big dreams.",
+      intro: "A private piggy bank for children, used together with a grown-up. Pop coins in, pick a dream and watch the jar fill up.",
+      art: { src: "assets/piggy/card.webp", alt: "Emma feeding a gold coin into her pink piggy bank" },
+
+      stores: {
+        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        appStore:   { status: "hidden",      url: "", badge: "" }
+      },
+
+      features: [
+        { emoji: "🐷", color: "pink",   title: "Pop it in",     text: "Tap the coins and notes you're putting in, then watch the piggy gulp them up." },
+        { emoji: "📒", color: "yellow", title: "Coin diary",    text: "Every entry is written down, with Undo if you tap by mistake." },
+        { emoji: "🫙", color: "purple", title: "Dreams",        text: "Pick something to save for and watch its jar fill up." },
+        { emoji: "🏅", color: "orange", title: "Stickers",      text: "Collect 20 stickers as you save." },
+        { emoji: "🛒", color: "green",  title: "Coin shop",     text: "Practise paying the exact price with pretend money, so the piggy stays full." },
+        { emoji: "🎀", color: "blue",   title: "Dress up Piggy", text: "Give the piggy new colours, hats and glasses (Premium)." }
+      ],
+
+      momentsTitle: "Emma and her piggy",
+      moments: [
+        { src: "assets/piggy/emma-hug.webp",   alt: "Emma sitting down and hugging her piggy bank" },
+        { src: "assets/piggy/emma-coin.webp",  alt: "Emma laughing and holding a big gold star coin" },
+        { src: "assets/piggy/emma-dream.webp", alt: "Emma lying on the grass, dreaming" }
+      ],
+
+      trust: ["No ads", "No accounts", "Nothing leaves the device"],
+      note: "Free to try with one dream. Premium (a yearly subscription billed by Google Play) unlocks more dreams and extra games. The money in the app is only a record of savings, not real money.",
+
+      screenshots: [
+        { src: "assets/piggy/home.webp",      alt: "Puc Puc Piggy home screen: a pink piggy holding £8.00, Add money and Take out buttons, and the Coin diary" },
+        { src: "assets/piggy/add-money.webp", alt: "Add money: tap glossy coins and notes, choose where the money is from, then press Pop it in" },
+        { src: "assets/piggy/dreams.webp",    alt: "My dreams: a Bike dream with £8.00 saved of £10.00, and a sticker collection" },
+        { src: "assets/piggy/new-dream.webp", alt: "New goal: pick a picture, a name and a price for a dream" },
+        { src: "assets/piggy/play.webp",      alt: "Play: the Coin shop with Easy, Medium and Tricky, plus Need or want and Dress up Piggy" }
+      ],
+
+      privacyUrl: "privacy-piggy.html"
     }
   ],
 
