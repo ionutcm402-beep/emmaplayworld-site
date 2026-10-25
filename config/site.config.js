@@ -40,7 +40,7 @@ window.SITE = {
   /*
    * The apps and games of Emma Play World. Add one by adding an object to this list.
    *
-   * theme:          "bubbles" (sky blue), "bloom" (pink) or "piggy" (lilac)
+   * theme:          "bubbles" (sky blue), "bloom" (pink) or "piggy" (lilac) or "pegs" (sunshine)
    * stores.<store>.status: "available" | "coming-soon" | "hidden"
    * stores.<store>.url:    the real listing URL (required for "available")
    * stores.<store>.badge:  path to the OFFICIAL badge image
@@ -173,6 +173,22 @@ window.SITE = {
       ],
 
       privacyUrl: "privacy-piggy.html"
+    },
+
+    {
+      id: "pegs",
+      short: "Pegs",
+      theme: "pegs",
+      kind: "Game",
+      comingSoon: true,
+      name: "Puc Puc Pegs",
+      tagline: "A new game is on its way.",
+      intro: "Emma is hugging a big pink heart full of colourful pegs. More about Puc Puc Pegs soon!",
+      art: { src: "assets/pegs/card.webp", alt: "Emma hugging a big pink heart with colourful round pegs holes in a sunny garden" },
+      stores: {
+        googlePlay: { status: "hidden", url: "", badge: "" },
+        appStore:   { status: "hidden", url: "", badge: "" }
+      }
     }
   ],
 

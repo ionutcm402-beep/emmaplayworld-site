@@ -100,7 +100,7 @@
       el("span", { class: "pill", text: g.kind || "App" }),
       el("h2", { text: g.name }),
       g.tagline ? el("p", { text: g.tagline }) : null,
-      anySoon(g) && !anyLive(g) ? el("span", { class: "soon-note", text: "Coming soon" }) : null,
+      (g.comingSoon || anySoon(g)) && !anyLive(g) ? el("span", { class: "soon-note", text: "Coming soon" }) : null,
       el("span", { class: "go", text: "Explore " + g.name + " →" })
     ]);
     picks.appendChild(el("a", { class: "pick t-" + g.theme + " rise", href: "#" + g.id }, [pic, body]));
@@ -218,7 +218,7 @@
       el("span", { class: "pill", text: g.kind || "App" }), name,
       g.tagline ? el("p", { class: "tagline", text: g.tagline }) : null,
       g.intro ? el("p", { class: "intro", text: g.intro }) : null,
-      renderStores(g),
+      g.comingSoon ? el("div", { class: "stores" }, [el("span", { class: "status", text: "Coming soon" })]) : renderStores(g),
       g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null
     ]);
     var art = g.art && g.art.src ? el("div", { class: "art rise" }, [el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" })]) : null;
