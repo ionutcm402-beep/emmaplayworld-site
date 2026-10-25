@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.35' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23ffd3e8'/%3E%3Cstop offset='.55' stop-color='%23ff6fb5'/%3E%3Cstop offset='1' stop-color='%236a3fe0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3Cellipse cx='11' cy='9.5' rx='4' ry='2.6' fill='white' opacity='.9'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/fredoka-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/nunito-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=20261025a">
 </head>
 <body>
 <a class="skip" href="#top">Skip to content</a>
@@ -25,7 +25,7 @@
 <main id="top"><div class="wrap"><article class="legal">
 <h1>Privacy <em>notice</em></h1>
 <p class="updated">Last updated: 25 October 2026. Choose what you want to read:</p>
-<nav class="pick" aria-label="Choose a privacy notice"><a href="privacy.html#website" aria-current="page">Website</a><a href="privacy.html#app">Puc Puc Bubbles</a><a href="privacy-bloom.html">Puc Puc Bloom</a></nav>
+<nav class="pick" aria-label="Choose a privacy notice"><a href="#website" aria-current="page">Website</a><a href="#app">Puc Puc Bubbles</a><a href="privacy-bloom.html">Puc Puc Bloom</a></nav>
 
 
 <h2 id="website">The website</h2>
@@ -86,5 +86,20 @@
   <a class="mail" href="mailto:contact.emmaplayworld@gmail.com">contact.emmaplayworld@gmail.com</a>
 </footer></div>
 <script>document.getElementById("y").textContent=new Date().getFullYear();</script>
+<script>
+/* the purple button follows the section you tapped or are reading */
+(function () {
+  var links = document.querySelectorAll('.pick a'), web = document.getElementById('website'), app = document.getElementById('app');
+  if (!links.length || !web || !app) return;
+  function mark(which) { links.forEach(function (a) { if (a.getAttribute('data-k') === which) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }); }
+  links[0].setAttribute('data-k', 'website'); links[1].setAttribute('data-k', 'app'); links[2].setAttribute('data-k', 'bloom');
+  function fromScroll() { mark(app.getBoundingClientRect().top < window.innerHeight * 0.4 ? 'app' : 'website'); }
+  links[0].addEventListener('click', function () { mark('website'); });
+  links[1].addEventListener('click', function () { mark('app'); });
+  function fromHash() { if (location.hash === '#app') mark('app'); else if (location.hash === '#website') mark('website'); }
+  fromHash(); window.addEventListener('hashchange', fromHash); window.addEventListener('load', function () { setTimeout(fromScroll, 150); });
+  var t = null; window.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(fromScroll, 80); }, { passive: true });
+})();
+</script>
 </body>
 </html>
