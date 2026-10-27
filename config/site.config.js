@@ -57,7 +57,7 @@ window.SITE = {
       name: "Puc Puc Bubbles",
       tagline: "Play, learn and explore with Emma and her friends.",
       intro: "Choose a board of letters, numbers, animals and more, and pop away with Emma and her friends.",
-      art: { src: "assets/video/hero-art.webp", alt: "Puc Puc Bubbles: Emma, Bunny and Kitty playing with colourful bubbles in a magical garden" },
+      art: { src: "assets/video/hero-art-2.webp", alt: "Puc Puc Bubbles: Emma lying in the garden with Bunny, Kitty and Konic the baby unicorn, bubbles floating above" },
 
       stores: {
         googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
@@ -70,7 +70,7 @@ window.SITE = {
         { emoji: "⭐", color: "yellow", title: "Boards",    text: "Choose what to pop" }
       ],
 
-      cover: { src: "assets/video/trailer-cover.webp", alt: "Puc Puc Bubbles with Emma, Bunny and Kitty. Watch the game video." },
+      cover: { src: "assets/video/trailer-cover-4.webp", alt: "Puc Puc Bubbles with Emma, Bunny, Kitty and Konic. Watch the game video." },
       videos: [
         { id: "jwZMuZUtWeo", title: "Puc Puc Bubbles game video", note: "Watch the video on YouTube" }
       ],
