@@ -53,3 +53,9 @@ The home page is built from `games` in `config/site.config.js` (Puc Puc Bubbles,
 store badges, features, screenshots and (optional) video, so a third product is just another entry.
 Home-page styles are in `css/home.css`; `css/styles.css` is now used only by the legal pages.
 Bloom pictures: `assets/bloom/` (real app screenshots use sample habits). Never overwrite a picture; use a new file name.
+
+## Site structure (presentation page + one page per product)
+- `index.html`: presentation page for the Emma Play World ecosystem (two games, two apps, Emma's friends).
+- `bubbles.html`, `pegs.html`, `piggy.html`, `bloom.html`: one page per product. Each is the same small file with `<body data-game="id">`; everything on it comes from that product's entry in `config/site.config.js`.
+- To add a product: add an entry to `games` (give it `id`, `short`, `group` "game" or "app", `theme`), copy one of the product html files to `<id>.html`, change `data-game`, the title and meta text, and add a `body.pg-<id>` look in `css/home.css`.
+- Puc Puc Pegs has no privacy notice page yet (add `privacyUrl` once `privacy-pegs.html` exists).

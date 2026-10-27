@@ -87,26 +87,37 @@
   function anyLive(g) { return Object.keys(STORES).some(function (k) { return storeState(k, g.stores && g.stores[k]) === "available"; }); }
   function anySoon(g) { return Object.keys(STORES).some(function (k) { return storeState(k, g.stores && g.stores[k]) === "soon"; }); }
 
+  /* ---------- page mode: the presentation page, or one product's own page ---------- */
+  var cur = document.body.getAttribute("data-game") || "";
+  var current = games.filter(function (g) { return g.id === cur; })[0] || null;
+  function pageOf(g) { return g.id + ".html"; }
+  if (current) document.body.classList.add("pg-" + current.id);
+
   /* ---------- top navigation ---------- */
   var nav = $("mainNav"); nav.textContent = "";
-  games.forEach(function (g) { nav.appendChild(el("a", { href: "#" + g.id, "aria-label": g.name, text: g.short || g.name })); });
-  if (S.brand.contactEmail) nav.appendChild(el("a", { class: "cta", href: "mailto:" + S.brand.contactEmail, text: "Say hello" }));
+  if (current) {
+    games.forEach(function (g) {
+      var a = el("a", { href: pageOf(g), "aria-label": g.name, text: g.short || g.name });
+      if (g === current) a.setAttribute("aria-current", "page");
+      nav.appendChild(a);
+    });
+  } else {
+    [["Games", "#games"], ["Apps", "#apps"], ["Friends", "#friends"]].forEach(function (l) { nav.appendChild(el("a", { href: l[1], text: l[0] })); });
+    if (S.brand.contactEmail) nav.appendChild(el("a", { class: "cta", href: "mailto:" + S.brand.contactEmail, text: "Say hello" }));
+  }
 
-  /* ---------- hero: one card per product ---------- */
-  var picks = $("picks"); picks.textContent = "";
-  games.forEach(function (g) {
-    var pic = el("span", { class: "pic" }, [g.art && g.art.src ? el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" }) : null]);
+  /* ---------- product cards (used on the presentation page and under every product page) ---------- */
+  function card(g) {
+    var pic = el("span", { class: "pic" }, [g.art && g.art.src ? el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560", loading: "lazy" }) : null]);
+    var soon = anySoon(g) && !anyLive(g);
     var body = el("span", { class: "body" }, [
       el("span", { class: "pill", text: g.kind || "App" }),
-      el("h2", { text: g.name }),
+      el("h3", { text: g.name }),
       g.tagline ? el("p", { text: g.tagline }) : null,
-      (g.comingSoon || anySoon(g)) && !anyLive(g) ? el("span", { class: "soon-note", text: "Coming soon" }) : null,
-      el("span", { class: "go", text: "Explore " + g.name + " →" })
+      soon ? el("span", { class: "soon-note", text: "Coming soon" }) : null,
+      el("span", { class: "go", text: "Meet " + g.name + " →" })
     ]);
-    picks.appendChild(el("a", { class: "pick t-" + g.theme + " rise", href: "#" + g.id }, [pic, body]));
-  });
-  if (S.brand.banner && S.brand.banner.src) {
-    $("hero").appendChild(el("div", { class: "banner rise" }, [el("img", { src: S.brand.banner.src, alt: S.brand.banner.alt || "", width: "1200", height: "675", loading: "lazy" })]));
+    return el("a", { class: "pick t-" + g.theme + " rise", href: pageOf(g) }, [pic, body]);
   }
 
   /* ---------- one section per product ---------- */
@@ -133,7 +144,7 @@
 
   function momentsBlock(g) {
     if (!g.moments || !g.moments.length) return null;
-    var box = el("div", { class: "moments rise" });
+    var box = el("div", { class: "moments rise" + (g.moments.length === 2 ? " two" : "") });
     g.moments.forEach(function (m) { box.appendChild(el("figure", {}, [el("img", { src: m.src, alt: m.alt || "", loading: "lazy", width: "600", height: "450" })])); });
     return el("div", {}, [el("h3", { class: "sub", text: g.momentsTitle || "A little garden of habits" }), box]);
   }
@@ -210,34 +221,59 @@
     return el("div", { id: "friends" }, [el("h3", { class: "sub", text: "Meet Emma's friends" }), el("p", { class: "hintf", text: "Tap a friend to change their pose!" }), duo]);
   }
 
-  var host = $("products"); host.textContent = "";
-  games.forEach(function (g) {
-    var w = parts(g.name);
-    var name = el("h2", { class: "name" }); name.textContent = g.name;
+
+  function productSection(g) {
+    var name = el("h1", { class: "name" }); name.textContent = g.name;
     var copy = el("div", { class: "copy" }, [
       el("span", { class: "pill", text: g.kind || "App" }), name,
       g.tagline ? el("p", { class: "tagline", text: g.tagline }) : null,
       g.intro ? el("p", { class: "intro", text: g.intro }) : null,
-      g.comingSoon ? el("div", { class: "stores" }, [el("span", { class: "status", text: "Coming soon" })]) : renderStores(g),
+      renderStores(g),
       g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null
     ]);
-    var art = g.art && g.art.src ? el("div", { class: "art rise" }, [el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" })]) : null;
-    var sec = el("section", { class: "prod theme-" + g.theme, id: g.id, "aria-label": g.name }, [
+    var art = g.art && g.art.src ? el("div", { class: "art" }, [el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" })]) : null;
+    return el("section", { class: "prod theme-" + g.theme, id: g.id, "aria-label": g.name }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "prod-head" }, [copy, art]),
         featuresBlock(g), momentsBlock(g), videoBlock(g), shotsBlock(g), trustBlock(g), g.friends ? friendsBlock() : null
       ])
     ]);
-    host.appendChild(sec);
-  });
+  }
+
+  var host = $("products"); host.textContent = "";
+  if (current) {
+    document.title = current.name + " · Emma Play World";
+    host.appendChild(productSection(current));
+    var more = el("div", { class: "more picks" });
+    games.filter(function (g) { return g !== current; }).forEach(function (g) { more.appendChild(card(g)); });
+    host.appendChild(el("section", { class: "wrap more-wrap" }, [el("h2", { class: "sub", text: "More from Emma Play World" }), more]));
+  } else {
+    [{ id: "games", group: "game", title: "Games", sub: "Play, pop and match with Emma and her friends." },
+     { id: "apps",  group: "app",  title: "Apps",  sub: "Little helpers for everyday life, made with the same characters." }].forEach(function (grp) {
+      var list = games.filter(function (g) { return g.group === grp.group; });
+      if (!list.length) return;
+      var row = el("div", { class: "picks two" });
+      list.forEach(function (g) { row.appendChild(card(g)); });
+      host.appendChild(el("section", { class: "wrap grp", id: grp.id }, [el("h2", { class: "sub" }, []), el("p", { class: "subline", text: grp.sub }), row]));
+      host.lastChild.querySelector("h2").appendChild(document.createTextNode(grp.title));
+    });
+    var fb = friendsBlock();
+    if (fb) host.appendChild(el("section", { class: "wrap friends-wrap" }, [fb]));
+  }
   if (!games.length) host.hidden = true;
+
+  var bn = $("banner");
+  if (bn) { if (!current && S.brand.banner && S.brand.banner.src) bn.appendChild(el("img", { src: S.brand.banner.src, alt: S.brand.banner.alt || "", width: "1200", height: "675" })); else bn.hidden = true; }
 
   /* ---------- closing + footer ---------- */
   var ci = S.brand.closingImage;
-  if (ci && ci.src) $("closingArt").appendChild(el("img", { src: ci.src, alt: ci.alt || "", width: "900", height: "600", loading: "lazy" })); else $("closingArt").hidden = true;
+  var closing = $("closing");
+  if (closing && current) closing.hidden = true;
+  else if (ci && ci.src && $("closingArt")) $("closingArt").appendChild(el("img", { src: ci.src, alt: ci.alt || "", width: "900", height: "600", loading: "lazy" }));
   $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.brand.name || "") + (S.brand.domain ? " · " + S.brand.domain : "");
   var fn = $("footNav"); fn.textContent = "";
-  games.forEach(function (g) { fn.appendChild(el("a", { href: "#" + g.id, text: g.name })); });
+  fn.appendChild(el("a", { href: "./", text: "Home" }));
+  games.forEach(function (g) { fn.appendChild(el("a", { href: pageOf(g), text: g.name })); });
   if (S.legal && S.legal.privacyUrl) fn.appendChild(el("a", { href: S.legal.privacyUrl, text: "Privacy" }));
   if (S.legal && S.legal.termsUrl) fn.appendChild(el("a", { href: S.legal.termsUrl, text: "Terms" }));
   if (channel) fn.appendChild(el("a", { href: channel, target: "_blank", rel: "noopener", text: "YouTube" }));

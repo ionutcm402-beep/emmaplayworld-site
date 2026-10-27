@@ -20,7 +20,7 @@ window.SITE = {
     url: "https://emmaplayworld.com",
     contactEmail: "contact.emmaplayworld@gmail.com",
     tagline: "Little games. Big smiles.",
-    intro: "A bubble-popping game, a happy habit tracker and a piggy bank, made with Emma and her friends.",
+    intro: "Two games and two apps for little ones, made with Emma and her friends.",
     sign: "with Emma and her friends. Made for little moments of fun.",
     banner: { src: "assets/bloom/brand-banner.webp", alt: "Emma Play World: Emma lying in the grass with Bunny and Kitty, colourful bubbles and a rainbow castle behind them" },
     closingImage: { src: "assets/video/friends-hug.webp", alt: "Emma hugging Bunny and Kitty among the flowers" }
@@ -40,7 +40,7 @@ window.SITE = {
   /*
    * The apps and games of Emma Play World. Add one by adding an object to this list.
    *
-   * theme:          "bubbles" (sky blue), "bloom" (pink) or "piggy" (lilac) or "pegs" (sunshine)
+   * theme:          "bubbles" (sky blue), "bloom" (pink) or "piggy" (lilac) or "pegs" (clay purple)
    * stores.<store>.status: "available" | "coming-soon" | "hidden"
    * stores.<store>.url:    the real listing URL (required for "available")
    * stores.<store>.badge:  path to the OFFICIAL badge image
@@ -50,6 +50,7 @@ window.SITE = {
   games: [
     {
       id: "bubbles",
+      group: "game",
       short: "Bubbles",
       theme: "bubbles",
       kind: "Game",
@@ -87,51 +88,50 @@ window.SITE = {
     },
 
     {
-      id: "bloom",
-      short: "Bloom",
-      theme: "bloom",
-      kind: "Habit tracker app",
-      name: "Puc Puc Bloom",
-      tagline: "Little habits, happy hearts.",
-      intro: "A happy habit tracker for children, set up by grown-ups. Tick off small habits together and watch a garden grow.",
-      art: { src: "assets/bloom/checklist-panel.webp", alt: "Emma watering a glowing pink flower while Kitty watches, with butterflies all around" },
-      moments: [
-        { src: "assets/bloom/habits-panel.webp",   alt: "Emma watering a little flower: build healthy habits" },
-        { src: "assets/bloom/progress-panel.webp", alt: "A calendar with ticks and a gold star beside two seedlings: track daily progress" },
-        { src: "assets/bloom/garden-panel.webp",   alt: "Emma, Bunny and Kitty beside a tree full of gold stars: grow your garden" }
-      ],
+      id: "pegs",
+      short: "Pegs",
+      group: "game",
+      theme: "pegs",
+      kind: "Game",
+      name: "Puc Puc Pegs",
+      tagline: "Match the colours. Make the picture.",
+      intro: "Pick a picture board, find the peg that matches each ring and push it in. Emma and her friends are there to help.",
+      art: { src: "assets/pegs/card.webp", alt: "Emma hugging a big pink heart with colourful round peg holes in a sunny garden" },
 
       stores: {
         googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
-        appStore:   { status: "hidden",      url: "", badge: "" }
+        appStore:   { status: "hidden", url: "", badge: "" }
       },
 
       features: [
-        { emoji: "✅", color: "green",  title: "Tick it off",       text: "Tap a habit when it's done. Emma cheers when the day is complete." },
-        { emoji: "🫙", color: "yellow", title: "Star Jar",          text: "Every ticked habit drops a star in the jar. Fill it up to earn a treat." },
-        { emoji: "🌱", color: "green",  title: "Grow a garden",     text: "A little garden grows with every tick." },
-        { emoji: "🏷️", color: "pink",   title: "Sticker book",      text: "Collect happy stickers along the way." },
-        { emoji: "🌈", color: "purple", title: "Month ring",        text: "Watch the month fill with colour on the Progress screen." },
-        { emoji: "🌸", color: "blue",   title: "Your week in bloom", text: "A friendly recap of how the week went." }
+        { emoji: "🎨", color: "pink",   title: "Match the colours", text: "Find the peg in the tray that matches each ring." },
+        { emoji: "🌈", color: "purple", title: "My own colours",    text: "Choose any colour you like for every hole." },
+        { emoji: "🖼️", color: "blue",   title: "Picture boards",    text: "A strawberry, an ice cream, a sun and lots more, from Easy to Tricky." },
+        { emoji: "⭐", color: "yellow", title: "Stars",             text: "Collect stars as you finish pictures." },
+        { emoji: "🎁", color: "orange", title: "Surprise me!",      text: "Let the game pick a picture for you." },
+        { emoji: "👧", color: "green",  title: "Friends to help",   text: "Emma and Kitty say what to do next." }
+      ],
+
+      momentsTitle: "Pictures to make",
+      moments: [
+        { src: "assets/pegs/b-strawberry.webp", alt: "The strawberry board: a smiling strawberry on a picnic blanket with red and green peg rings" },
+        { src: "assets/pegs/b-icecream.webp",   alt: "The ice cream board: two smiling scoops on a cone at the beach, with pink, yellow and red peg rings" }
       ],
 
       trust: ["No ads", "No accounts", "Nothing leaves the device"],
-      note: "Free to try with up to 2 habits. Premium (a yearly subscription billed by Google Play) lets you add more.",
+      note: "Free to try with a few pictures. Premium (a yearly subscription billed by Google Play) unlocks them all.",
 
       screenshots: [
-        { src: "assets/bloom/home.webp",       alt: "Puc Puc Bloom home screen: today's habits (drink water, read a book, exercise, tidy up) with coloured tick circles and Emma with her unicorn at the top" },
-        { src: "assets/bloom/progress.webp",   alt: "Progress screen: a colourful ring showing every day of the month, with this month's percentage and streaks" },
-        { src: "assets/bloom/star-jar.webp",   alt: "Star Jar: a grown-up chooses a treat and how many stars fill the jar" },
-        { src: "assets/bloom/stickers.webp",   alt: "My sticker book: 9 of 16 stickers collected" },
-        { src: "assets/bloom/add-habit.webp",  alt: "Add a habit: pick a name, an icon, a colour and how often" },
-        { src: "assets/bloom/week-recap.webp", alt: "Your week in bloom: a weekly recap with a star for each day" }
-      ],
-
-      privacyUrl: "privacy-bloom.html"
+        { src: "assets/pegs/home.webp",        alt: "Puc Puc Pegs home screen: Match the colours and My own colours, Easy, Medium and Tricky levels, and picture boards" },
+        { src: "assets/pegs/board.webp",       alt: "Strawberry board: a speech bubble from Emma, a smiling strawberry with six rings and a tray of coloured pegs" },
+        { src: "assets/pegs/ice-cream.webp",   alt: "Ice cream board with Kitty saying find a peg in the tray that matches a ring" },
+        { src: "assets/pegs/own-colours.webp", alt: "My own colours mode: the boards show plain rings you can colour as you like" }
+      ]
     },
 
     {
       id: "piggy",
+      group: "app",
       short: "Piggy",
       theme: "piggy",
       kind: "Piggy bank app",
@@ -176,19 +176,48 @@ window.SITE = {
     },
 
     {
-      id: "pegs",
-      short: "Pegs",
-      theme: "pegs",
-      kind: "Game",
-      comingSoon: true,
-      name: "Puc Puc Pegs",
-      tagline: "A new game is on its way.",
-      intro: "Emma is hugging a big pink heart full of colourful pegs. More about Puc Puc Pegs soon!",
-      art: { src: "assets/pegs/card.webp", alt: "Emma hugging a big pink heart with colourful round pegs holes in a sunny garden" },
+      id: "bloom",
+      group: "app",
+      short: "Bloom",
+      theme: "bloom",
+      kind: "Habit tracker app",
+      name: "Puc Puc Bloom",
+      tagline: "Little habits, happy hearts.",
+      intro: "A happy habit tracker for children, set up by grown-ups. Tick off small habits together and watch a garden grow.",
+      art: { src: "assets/bloom/checklist-panel.webp", alt: "Emma watering a glowing pink flower while Kitty watches, with butterflies all around" },
+      moments: [
+        { src: "assets/bloom/habits-panel.webp",   alt: "Emma watering a little flower: build healthy habits" },
+        { src: "assets/bloom/progress-panel.webp", alt: "A calendar with ticks and a gold star beside two seedlings: track daily progress" },
+        { src: "assets/bloom/garden-panel.webp",   alt: "Emma, Bunny and Kitty beside a tree full of gold stars: grow your garden" }
+      ],
+
       stores: {
-        googlePlay: { status: "hidden", url: "", badge: "" },
-        appStore:   { status: "hidden", url: "", badge: "" }
-      }
+        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        appStore:   { status: "hidden",      url: "", badge: "" }
+      },
+
+      features: [
+        { emoji: "✅", color: "green",  title: "Tick it off",       text: "Tap a habit when it's done. Emma cheers when the day is complete." },
+        { emoji: "🫙", color: "yellow", title: "Star Jar",          text: "Every ticked habit drops a star in the jar. Fill it up to earn a treat." },
+        { emoji: "🌱", color: "green",  title: "Grow a garden",     text: "A little garden grows with every tick." },
+        { emoji: "🏷️", color: "pink",   title: "Sticker book",      text: "Collect happy stickers along the way." },
+        { emoji: "🌈", color: "purple", title: "Month ring",        text: "Watch the month fill with colour on the Progress screen." },
+        { emoji: "🌸", color: "blue",   title: "Your week in bloom", text: "A friendly recap of how the week went." }
+      ],
+
+      trust: ["No ads", "No accounts", "Nothing leaves the device"],
+      note: "Free to try with up to 2 habits. Premium (a yearly subscription billed by Google Play) lets you add more.",
+
+      screenshots: [
+        { src: "assets/bloom/home.webp",       alt: "Puc Puc Bloom home screen: today's habits (drink water, read a book, exercise, tidy up) with coloured tick circles and Emma with her unicorn at the top" },
+        { src: "assets/bloom/progress.webp",   alt: "Progress screen: a colourful ring showing every day of the month, with this month's percentage and streaks" },
+        { src: "assets/bloom/star-jar.webp",   alt: "Star Jar: a grown-up chooses a treat and how many stars fill the jar" },
+        { src: "assets/bloom/stickers.webp",   alt: "My sticker book: 9 of 16 stickers collected" },
+        { src: "assets/bloom/add-habit.webp",  alt: "Add a habit: pick a name, an icon, a colour and how often" },
+        { src: "assets/bloom/week-recap.webp", alt: "Your week in bloom: a weekly recap with a star for each day" }
+      ],
+
+      privacyUrl: "privacy-bloom.html"
     }
   ],
 
