@@ -120,13 +120,13 @@ window.SITE = {
       ],
 
       trust: ["No ads", "No accounts", "Nothing leaves the device"],
-      note: "Free to try with 2 pictures in each level, plus free play. Premium (a yearly subscription billed by Google Play, with a 3-day free trial) unlocks all 60 pictures.",
+      note: "Free to try with 2 pictures in each level. Premium (a yearly subscription billed by Google Play, with a 3-day free trial) unlocks all 60 pictures.",
 
       screenshots: [
-        { src: "assets/pegs/home.webp",        alt: "Puc Puc Pegs home screen: Match the colours and My own colours, Easy, Medium and Tricky levels, and picture boards" },
-        { src: "assets/pegs/board.webp",       alt: "Strawberry board: a speech bubble from Emma, a smiling strawberry with six rings and a tray of coloured pegs" },
-        { src: "assets/pegs/ice-cream.webp",   alt: "Ice cream board with Kitty saying find a peg in the tray that matches a ring" },
-        { src: "assets/pegs/own-colours.webp", alt: "My own colours mode: the boards show plain rings you can colour as you like" }
+        { src: "assets/pegs/home-v2.webp",        alt: "Puc Puc Pegs home screen: Match the colours and My own colours, Easy, Medium and Tricky levels, and picture boards" },
+        { src: "assets/pegs/board-v2.webp",       alt: "Strawberry board: a speech bubble from Emma, a smiling strawberry with six rings and a tray of coloured pegs" },
+        { src: "assets/pegs/ice-cream-v2.webp",   alt: "Ice cream board with Kitty saying find a peg in the tray that matches a ring" },
+        { src: "assets/pegs/own-colours-v2.webp", alt: "My own colours mode: the boards show plain rings you can colour as you like" }
       ],
 
       privacyUrl: "privacy-pegs.html"
