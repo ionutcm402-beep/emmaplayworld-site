@@ -55,7 +55,7 @@
   function badgeBody(kind, cfg, soon, gameName) {
     var meta = STORES[kind];
     if (cfg.badge) {
-      return el("img", { src: cfg.badge, alt: soon ? meta.label + " version of " + gameName + " coming soon" : "Get " + gameName + " on " + meta.label });
+      return el("img", { src: cfg.badge, width: "600", height: "200", alt: soon ? meta.label + " version of " + gameName + " coming soon" : "Get " + gameName + " on " + meta.label });
     }
     var icon = svg(meta.icon);
     icon.removeAttribute("viewBox"); icon.setAttribute("viewBox", "0 0 24 24");
@@ -232,7 +232,7 @@
       g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null
     ]);
     var ha = g.heroArt || g.art;
-    var art = ha && ha.src ? el("div", { class: "art" + (ha.square ? " square" : "") }, [el("img", { src: ha.src, alt: ha.alt || "", width: ha.square ? "800" : "900", height: ha.square ? "800" : "560" })]) : null;
+    var art = ha && ha.src ? el("div", { class: "art" + (ha.square ? " square" : "") }, [el("img", { src: ha.src, alt: ha.alt || "", fetchpriority: "high", width: ha.square ? "800" : "900", height: ha.square ? "800" : "560" })]) : null;
     return el("section", { class: "prod theme-" + g.theme, id: g.id, "aria-label": g.name }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "prod-head" }, [copy, art]),
