@@ -120,9 +120,9 @@ main,header,footer{position:relative;z-index:1}
 .hint{text-align:center;font-size:14px;margin:0;color:var(--mute)}
 
 /* friends */
-.duo{display:flex;justify-content:center;gap:clamp(14px,4vw,40px);flex-wrap:nowrap;overflow-x:clip;padding-block:10px 14px}
+.duo{display:flex;justify-content:center;gap:clamp(8px,3vw,36px);flex-wrap:nowrap;overflow-x:clip;padding-block:10px 14px}
 .hintf{text-align:center;font-weight:800;margin:0 0 6px}
-.fr-card{position:relative;appearance:none;border:0;background:none;padding:0;cursor:pointer;width:min(230px,42vw);display:flex;flex-direction:column;align-items:center;font:inherit;transform:rotate(var(--tilt));transition:transform .35s var(--ease)}
+.fr-card{position:relative;appearance:none;border:0;background:none;padding:0;cursor:pointer;width:min(230px,29vw);display:flex;flex-direction:column;align-items:center;font:inherit;transform:rotate(var(--tilt));transition:transform .35s var(--ease)}
 .fr-card:hover{transform:rotate(0) translateY(-8px) scale(1.03)}
 .fr-glow{position:absolute;left:50%;top:0;width:118%;aspect-ratio:1;translate:-50% -8%;border-radius:50%;z-index:0;filter:blur(26px);opacity:.85;background:conic-gradient(from 20deg,#ff6fb5,#ffd23f,#3cc56b,#3b9cf0,#9b5cf0,#ff6fb5)}
 .fr-pic{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1;border-radius:46% 54% 50% 50%/52% 48% 52% 48%;overflow:hidden;background:var(--pc);box-shadow:0 0 0 5px #fff,0 0 0 9px color-mix(in srgb,var(--nc2) 70%,#fff),0 30px 50px -22px color-mix(in srgb,var(--nc) 70%,#3a1c8a)}
@@ -210,3 +210,5 @@ body.pg-bubbles .feat{background:linear-gradient(180deg,#fff,#eef7ff)}
 .moments.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin-inline:auto}
 
 .art.square{max-width:480px;justify-self:center;width:100%}.art.square img{aspect-ratio:1/1}
+
+@media(max-width:560px){.fr-tag{padding:5px 12px 6px;font-size:16px;margin-top:-12px}.fr-pic{box-shadow:0 0 0 3px #fff,0 0 0 6px color-mix(in srgb,var(--nc2) 70%,#fff),0 18px 30px -18px color-mix(in srgb,var(--nc) 70%,#3a1c8a)}}

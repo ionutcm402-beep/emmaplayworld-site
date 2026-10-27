@@ -157,7 +157,6 @@ window.SITE = {
 
       momentsTitle: "Emma and her piggy",
       moments: [
-        { src: "assets/piggy/emma-hug.webp",   alt: "Emma sitting down and hugging her piggy bank" },
         { src: "assets/piggy/emma-coin.webp",  alt: "Emma laughing and holding a big gold star coin" },
         { src: "assets/piggy/emma-dream.webp", alt: "Emma lying on the grass, dreaming" }
       ],
@@ -238,6 +237,16 @@ window.SITE = {
         { src: "assets/poses/bunny-winking.webp", alt: "Bunny winking" },
         { src: "assets/poses/bunny-jumping.webp", alt: "Bunny jumping for joy" },
         { src: "assets/poses/bunny-playing.webp", alt: "Bunny playing with a bubble wand" }
+      ] },
+    { name: "Konic", img: "assets/friends/konic.webp", thumb: "assets/friends/konic-thumb.webp", c: "#8a4cf0", pc: "#efe4ff", c2: "#ff5fb8",
+      poses: [
+        { src: "assets/poses/konic-sitting.webp", alt: "Konic the baby unicorn sitting and smiling" },
+        { src: "assets/poses/konic-waving.webp", alt: "Konic waving a hoof and winking" },
+        { src: "assets/poses/konic-heart.webp", alt: "Konic hugging a pink heart" },
+        { src: "assets/poses/konic-bubbles.webp", alt: "Konic looking up at floating bubbles" },
+        { src: "assets/poses/konic-dancing.webp", alt: "Konic dancing" },
+        { src: "assets/poses/konic-cheering.webp", alt: "Konic jumping and cheering" },
+        { src: "assets/poses/konic-leaping.webp", alt: "Konic leaping with his wings out" }
       ] }
   ]
 };
