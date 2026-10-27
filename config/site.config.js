@@ -22,7 +22,7 @@ window.SITE = {
     tagline: "Little games. Big smiles.",
     intro: "Two games and two apps for little ones, made with Emma and her friends.",
     sign: "with Emma and her friends. Made for little moments of fun.",
-    banner: { src: "assets/bloom/brand-banner.webp", alt: "Emma Play World: Emma lying in the grass with Bunny and Kitty, colourful bubbles and a rainbow castle behind them" },
+    banner: { src: "assets/bloom/brand-banner-3.webp", alt: "Emma Play World: Emma lying in the garden with Bunny, Kitty and Konic the baby unicorn. Fun, play, learn, explore." },
     closingImage: { src: "assets/video/friends-together.webp", alt: "Emma lying in the grass with Bunny, Kitty and Konic the baby unicorn, bubbles floating above", width: 900, height: 900 }
   },
 
