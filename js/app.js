@@ -270,7 +270,7 @@
   var ci = S.brand.closingImage;
   var closing = $("closing");
   if (closing && current) closing.hidden = true;
-  else if (ci && ci.src && $("closingArt")) $("closingArt").appendChild(el("img", { src: ci.src, alt: ci.alt || "", width: "900", height: "600", loading: "lazy" }));
+  else if (ci && ci.src && $("closingArt")) $("closingArt").appendChild(el("img", { src: ci.src, alt: ci.alt || "", width: String(ci.width || 900), height: String(ci.height || 600), loading: "lazy" }));
   $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.brand.name || "") + (S.brand.domain ? " · " + S.brand.domain : "");
   var fn = $("footNav"); fn.textContent = "";
   fn.appendChild(el("a", { href: "./", text: "Home" }));

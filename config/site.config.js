@@ -23,7 +23,7 @@ window.SITE = {
     intro: "Two games and two apps for little ones, made with Emma and her friends.",
     sign: "with Emma and her friends. Made for little moments of fun.",
     banner: { src: "assets/bloom/brand-banner.webp", alt: "Emma Play World: Emma lying in the grass with Bunny and Kitty, colourful bubbles and a rainbow castle behind them" },
-    closingImage: { src: "assets/video/friends-hug.webp", alt: "Emma hugging Bunny and Kitty among the flowers" }
+    closingImage: { src: "assets/video/friends-together.webp", alt: "Emma lying in the grass with Bunny, Kitty and Konic the baby unicorn, bubbles floating above", width: 900, height: 900 }
   },
 
   youtube: {
@@ -141,7 +141,7 @@ window.SITE = {
       name: "Puc Puc Piggy",
       tagline: "Little coins, big dreams.",
       intro: "A private piggy bank for children, used together with a grown-up. Pop coins in, pick a dream and watch the jar fill up.",
-      art: { src: "assets/piggy/card.webp", alt: "Emma feeding a gold coin into her pink piggy bank" },
+      art: { src: "assets/piggy/hero-coin-piggy.webp", alt: "Emma laughing and holding a big gold star coin, with a smiling pink piggy bank beside her" },
 
       stores: {
         googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
@@ -159,7 +159,7 @@ window.SITE = {
 
       momentsTitle: "Emma and her piggy",
       moments: [
-        { src: "assets/piggy/emma-coin.webp",  alt: "Emma laughing and holding a big gold star coin" },
+        { src: "assets/piggy/piggy-wink.webp", alt: "Piggy, the pink piggy bank, winking with a big smile" },
         { src: "assets/piggy/emma-dream.webp", alt: "Emma lying on the grass, dreaming" }
       ],
 
@@ -186,9 +186,9 @@ window.SITE = {
       name: "Puc Puc Bloom",
       tagline: "Little habits, happy hearts.",
       intro: "A happy habit tracker for children, set up by grown-ups. Tick off small habits together and watch a garden grow.",
-      art: { src: "assets/bloom/checklist-panel.webp", alt: "Emma watering a glowing pink flower while Kitty watches, with butterflies all around" },
+      art: { src: "assets/bloom/flower-glow.webp", alt: "A glowing pink flower sprouting from the soil while Kitty watches happily, with butterflies all around" },
       moments: [
-        { src: "assets/bloom/habits-panel.webp",   alt: "Emma watering a little flower: build healthy habits" },
+        { src: "assets/bloom/emma-cheer.webp",     alt: "Emma cheering with a big happy smile" },
         { src: "assets/bloom/progress-panel.webp", alt: "A calendar with ticks and a gold star beside two seedlings: track daily progress" },
         { src: "assets/bloom/garden-panel.webp",   alt: "Emma, Bunny and Kitty beside a tree full of gold stars: grow your garden" }
       ],
