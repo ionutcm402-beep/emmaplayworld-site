@@ -127,7 +127,9 @@ window.SITE = {
         { src: "assets/pegs/board.webp",       alt: "Strawberry board: a speech bubble from Emma, a smiling strawberry with six rings and a tray of coloured pegs" },
         { src: "assets/pegs/ice-cream.webp",   alt: "Ice cream board with Kitty saying find a peg in the tray that matches a ring" },
         { src: "assets/pegs/own-colours.webp", alt: "My own colours mode: the boards show plain rings you can colour as you like" }
-      ]
+      ],
+
+      privacyUrl: "privacy-pegs.html"
     },
 
     {

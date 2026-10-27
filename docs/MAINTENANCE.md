@@ -58,4 +58,4 @@ Bloom pictures: `assets/bloom/` (real app screenshots use sample habits). Never 
 - `index.html`: presentation page for the Emma Play World ecosystem (two games, two apps, Emma's friends).
 - `bubbles.html`, `pegs.html`, `piggy.html`, `bloom.html`: one page per product. Each is the same small file with `<body data-game="id">`; everything on it comes from that product's entry in `config/site.config.js`.
 - To add a product: add an entry to `games` (give it `id`, `short`, `group` "game" or "app", `theme`), copy one of the product html files to `<id>.html`, change `data-game`, the title and meta text, and add a `body.pg-<id>` look in `css/home.css`.
-- Puc Puc Pegs has no privacy notice page yet (add `privacyUrl` once `privacy-pegs.html` exists).
+- Puc Puc Pegs privacy notice: `privacy-pegs.html` (linked from the Pegs page). Update it if the game's data use or subscription terms change.
