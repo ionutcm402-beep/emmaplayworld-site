@@ -76,11 +76,11 @@ window.SITE = {
       ],
 
       screenshots: [
-        { src: "assets/screens/home.webp",               alt: "Puc Puc Bubbles home screen with Emma, Bunny and Kitty under a rainbow and a big Play button" },
-        { src: "assets/screens/free-play-letters.webp",  alt: "Free Play on the Letters board: rows of glossy rainbow letter bubbles" },
-        { src: "assets/screens/pet-friends.webp",        alt: "Free Play on the Pet friends board: glossy bubbles with a cat, dog, bunny, panda, fox, frog and more" },
-        { src: "assets/screens/discover.webp",           alt: "Discover mode: Emma says pop a bubble to see what's hiding" },
-        { src: "assets/screens/explore.webp",            alt: "Explore screen with Free Play and Discover, plus Boards and Collection" }
+        { src: "assets/screens/home-2.webp",               alt: "Puc Puc Bubbles home screen: Emma with Bunny, Kitty and Konic the baby unicorn, and a big Play button" },
+        { src: "assets/screens/explore-2.webp",            alt: "Explore screen with Free Play and Discover, plus Boards and Collection" },
+        { src: "assets/screens/free-play-letters-2.webp",  alt: "Free Play on the Letters board: rows of glossy rainbow letter bubbles, with Emma and Kitty cheering you on" },
+        { src: "assets/screens/pet-friends-2.webp",        alt: "Free Play on the Pet friends board: glossy bubbles with a dog, bunny, bear, panda, fox, frog, duckling and more" },
+        { src: "assets/screens/discover-2.webp",           alt: "Discover mode: Emma says pop a bubble to see what's hiding" }
       ],
 
       friends: true,
