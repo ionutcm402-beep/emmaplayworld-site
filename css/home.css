@@ -208,3 +208,5 @@ body.pg-bubbles .feat{background:linear-gradient(180deg,#fff,#eef7ff)}
 .prod .name{font-size:clamp(40px,6vw,66px)}
 .prod h1.name{margin-top:14px}
 .moments.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin-inline:auto}
+
+.art.square{max-width:480px;justify-self:center;width:100%}.art.square img{aspect-ratio:1/1}

@@ -96,7 +96,8 @@ window.SITE = {
       name: "Puc Puc Pegs",
       tagline: "Match the colours. Make the picture.",
       intro: "Pick a picture board, find the peg that matches each ring and push it in. Emma and her friends are there to help.",
-      art: { src: "assets/pegs/card.webp", alt: "Emma hugging a big pink heart with colourful round peg holes in a sunny garden" },
+      art: { src: "assets/pegs/icon-card2.webp", alt: "Emma winking and pressing a colourful peg into a pink peg board" },
+      heroArt: { src: "assets/pegs/icon.webp", alt: "Emma winking and pressing a colourful peg into a pink peg board", square: true },
 
       stores: {
         googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },

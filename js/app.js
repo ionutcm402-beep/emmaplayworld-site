@@ -231,7 +231,8 @@
       renderStores(g),
       g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null
     ]);
-    var art = g.art && g.art.src ? el("div", { class: "art" }, [el("img", { src: g.art.src, alt: g.art.alt || "", width: "900", height: "560" })]) : null;
+    var ha = g.heroArt || g.art;
+    var art = ha && ha.src ? el("div", { class: "art" + (ha.square ? " square" : "") }, [el("img", { src: ha.src, alt: ha.alt || "", width: ha.square ? "800" : "900", height: ha.square ? "800" : "560" })]) : null;
     return el("section", { class: "prod theme-" + g.theme, id: g.id, "aria-label": g.name }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "prod-head" }, [copy, art]),
