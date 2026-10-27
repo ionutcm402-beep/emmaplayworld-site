@@ -139,14 +139,14 @@
         el("h3", { text: f.title }), el("p", { text: f.text })
       ]));
     });
-    return el("div", {}, [el("h3", { class: "sub", text: g.features.length > 3 ? "What's inside" : "How it works" }), grid]);
+    return el("div", {}, [el("h2", { class: "sub", text: g.features.length > 3 ? "What's inside" : "How it works" }), grid]);
   }
 
   function momentsBlock(g) {
     if (!g.moments || !g.moments.length) return null;
     var box = el("div", { class: "moments rise" + (g.moments.length === 2 ? " two" : "") });
     g.moments.forEach(function (m) { box.appendChild(el("figure", {}, [el("img", { src: m.src, alt: m.alt || "", loading: "lazy", width: "600", height: "450" })])); });
-    return el("div", {}, [el("h3", { class: "sub", text: g.momentsTitle || "A little garden of habits" }), box]);
+    return el("div", {}, [el("h2", { class: "sub", text: g.momentsTitle || "A little garden of habits" }), box]);
   }
 
   function videoBlock(g) {
@@ -168,19 +168,19 @@
     screen.appendChild(poster);
     var cap = el("div", { class: "cap" }, [el("div", {}, [el("strong", { text: v.title || g.name }), el("span", { text: v.note || "Watch on YouTube" })])]);
     if (channel) cap.appendChild(el("a", { class: "btn", href: channel + "?sub_confirmation=1", target: "_blank", rel: "noopener", text: "Subscribe on YouTube" }));
-    return el("div", {}, [el("h3", { class: "sub", text: "Watch " + g.name }), el("div", { class: "video rise" }, [screen, cap])]);
+    return el("div", {}, [el("h2", { class: "sub", text: "Watch " + g.name }), el("div", { class: "video rise" }, [screen, cap])]);
   }
 
   function shotsBlock(g) {
     var shots = (g.screenshots || []).filter(function (s) { return s && s.src; });
     if (!shots.length) return null;
-    var row = el("div", { class: "shots rise", role: "list" });
+    var row = el("div", { class: "shots rise" });
     shots.forEach(function (s) {
-      var b = el("button", { type: "button", class: "shot", role: "listitem", "aria-label": "Enlarge: " + (s.alt || g.name + " screenshot") }, [el("img", { src: s.src, alt: s.alt || (g.name + " screenshot"), loading: "lazy" })]);
+      var b = el("button", { type: "button", class: "shot", "aria-label": "Enlarge: " + (s.alt || g.name + " screenshot") }, [el("img", { src: s.src, alt: s.alt || (g.name + " screenshot"), loading: "lazy" })]);
       b.addEventListener("click", function () { openShot(s); });
       row.appendChild(b);
     });
-    return el("div", {}, [el("h3", { class: "sub", text: "Take a peek inside" }), row, el("p", { class: "hint", text: "Tap a picture to see it bigger" })]);
+    return el("div", {}, [el("h2", { class: "sub", text: "Take a peek inside" }), row, el("p", { class: "hint", text: "Tap a picture to see it bigger" })]);
   }
 
   function trustBlock(g) {
@@ -218,7 +218,7 @@
       });
       duo.appendChild(b);
     });
-    return el("div", { id: "friends" }, [el("h3", { class: "sub", text: "Meet Emma's friends" }), el("p", { class: "hintf", text: "Tap a friend to change their pose!" }), duo]);
+    return el("div", { id: "friends" }, [el("h2", { class: "sub", text: "Meet Emma's friends" }), el("p", { class: "hintf", text: "Tap a friend to change their pose!" }), duo]);
   }
 
 

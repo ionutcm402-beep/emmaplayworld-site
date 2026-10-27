@@ -21,9 +21,8 @@ In the game's `videos` list add `{ id: "VIDEO_ID", title: "Real title", note: "S
 The Gallery section and its menu link appear automatically. Use genuine screenshots only. The "Pop, play and explore" section shows `board.image` (a game screenshot); remove `board.image` to fall back to the interactive bubble toy.
 
 ## Change artwork or characters
-- Emma: replace `assets/emma/emma-full.webp` (transparent background, keep the file name).
-- Friends (currently Kitty and Bunny): each has a list of square `poses` in `assets/poses/` (set in the config; the first shows, tapping the friend shows the next); remove `poses` to get the one-at-a-time picker instead. Picker picture: replace the image in `assets/friends/` (keep the file names), or add a new entry in the config's `characters` list with `name`, `img`, `thumb` and colours. `say` is optional and should only be a line the character really says in the game.
-- Share-preview image: `assets/og-image.jpg` (1200 × 630).
+- Friends (currently Kitty, Bunny and Konic): each has a list of square `poses` in `assets/poses/` (set in the config; the first shows, tapping the friend shows the next); remove `poses` to get the one-at-a-time picker instead. Picker picture: replace the image in `assets/friends/` (keep the file names), or add a new entry in the config's `characters` list with `name`, `img`, `thumb` and colours. `say` is optional and should only be a line the character really says in the game.
+- Share-preview image: `assets/og-image-v3.jpg` (1200 × 630), named in each page's `og:image` and `twitter:image`. Use a new file name when you change it (assets are cached for a year).
 
 ## Official store badges
 Files live in `assets/badges/` and are linked from the config (`badge`). Replace the files if Google or Apple publish new artwork.

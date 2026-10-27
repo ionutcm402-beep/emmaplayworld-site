@@ -120,7 +120,7 @@ window.SITE = {
       ],
 
       trust: ["No ads", "No accounts", "Nothing leaves the device"],
-      note: "Free to try with a few pictures. Premium (a yearly subscription billed by Google Play) unlocks them all.",
+      note: "Free to try with 2 pictures in each level, plus free play. Premium (a yearly subscription billed by Google Play, with a 3-day free trial) unlocks all 60 pictures.",
 
       screenshots: [
         { src: "assets/pegs/home.webp",        alt: "Puc Puc Pegs home screen: Match the colours and My own colours, Easy, Medium and Tricky levels, and picture boards" },
