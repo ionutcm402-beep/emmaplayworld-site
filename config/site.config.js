@@ -84,7 +84,8 @@ window.SITE = {
       ],
 
       friends: true,
-      privacyUrl: "privacy.html#app"
+      privacyUrl: "privacy.html#app",
+      termsUrl: "terms-bubbles.html"
     },
 
     {
@@ -129,7 +130,8 @@ window.SITE = {
         { src: "assets/pegs/own-colours-v2.webp", alt: "My own colours mode: the boards show plain rings you can colour as you like" }
       ],
 
-      privacyUrl: "privacy-pegs.html"
+      privacyUrl: "privacy-pegs.html",
+      termsUrl: "terms-pegs.html"
     },
 
     {
@@ -174,7 +176,8 @@ window.SITE = {
         { src: "assets/piggy/play.webp",      alt: "Play: the Coin shop with Easy, Medium and Tricky, plus Need or want and Dress up Piggy" }
       ],
 
-      privacyUrl: "privacy-piggy.html"
+      privacyUrl: "privacy-piggy.html",
+      termsUrl: "terms-piggy.html"
     },
 
     {
@@ -219,7 +222,8 @@ window.SITE = {
         { src: "assets/bloom/week-recap.webp", alt: "Your week in bloom: a weekly recap with a star for each day" }
       ],
 
-      privacyUrl: "privacy-bloom.html"
+      privacyUrl: "privacy-bloom.html",
+      termsUrl: "terms-bloom.html"
     }
   ],
 

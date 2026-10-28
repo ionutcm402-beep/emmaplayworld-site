@@ -229,7 +229,8 @@
       g.tagline ? el("p", { class: "tagline", text: g.tagline }) : null,
       g.intro ? el("p", { class: "intro", text: g.intro }) : null,
       renderStores(g),
-      g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null
+      g.privacyUrl ? el("a", { class: "plink", href: g.privacyUrl, text: "Privacy notice for " + g.name }) : null,
+      g.termsUrl ? el("a", { class: "plink", href: g.termsUrl, text: "Terms and subscription for " + g.name }) : null
     ]);
     var ha = g.heroArt || g.art;
     var art = ha && ha.src ? el("div", { class: "art" + (ha.square ? " square" : "") }, [el("img", { src: ha.src, alt: ha.alt || "", fetchpriority: "high", width: ha.square ? "800" : "900", height: ha.square ? "800" : "560" })]) : null;
