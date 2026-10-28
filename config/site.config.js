@@ -173,7 +173,7 @@ window.SITE = {
         { src: "assets/piggy/add-money.webp", alt: "Add money: tap glossy coins and notes, choose where the money is from, then press Pop it in" },
         { src: "assets/piggy/dreams.webp",    alt: "My dreams: a Bike dream with £8.00 saved of £10.00, and a sticker collection" },
         { src: "assets/piggy/new-dream.webp", alt: "New goal: pick a picture, a name and a price for a dream" },
-        { src: "assets/piggy/play-2.webp",    alt: "Play: practise with coins and money in the Coin shop, at Easy, Medium and Tricky" }
+        { src: "assets/piggy/play-3.webp",    alt: "Play: practise with coins and money in the Coin shop, at Easy, Medium and Tricky" }
       ],
 
       privacyUrl: "privacy-piggy.html",
