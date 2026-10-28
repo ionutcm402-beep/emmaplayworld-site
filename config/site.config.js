@@ -211,7 +211,7 @@ window.SITE = {
       ],
 
       trust: ["No ads", "No accounts", "Nothing leaves the device"],
-      note: "Free to try with up to 2 habits. Premium (a yearly subscription billed by Google Play) lets you add more.",
+      note: "Everything is free for the first 3 days, with no payment details. After that, habits and history stay safe to view and print, and a grown-up can unlock the full app forever with one payment through Google Play. No subscription.",
 
       screenshots: [
         { src: "assets/bloom/home.webp",       alt: "Puc Puc Bloom home screen: today's habits (drink water, read a book, exercise, tidy up) with coloured tick circles and Emma with her unicorn at the top" },
