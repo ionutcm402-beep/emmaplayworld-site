@@ -32,3 +32,8 @@
 ## 28 Oct 2026 (late): Puc Puc Pegs moves to 3 free days + one-time unlock
 - Pegs 1.1 (versionCode 2) replaces the yearly subscription with: 72 hours of everything free (counted on the device, not a Google Play trial, nothing charged), then 2 free pictures per level, and an optional one-time Google Play purchase `pucpucpegs_lifetime` (£2.99 UK, set in Play Console). Verified against the Pegs 1.1 source.
 - Updated: `privacy-pegs.html` (storage list, payments, "Free days and the one-time unlock" section, keeping the old `#subscription-terms` anchor), `terms-pegs.html` (rewritten), Pegs note in `config/site.config.js`. The other three apps were not changed by this step.
+
+## 28 Oct 2026 (later): Puc Puc Piggy moves to 3 days free + one-time unlock (app 1.0.21)
+- Piggy no longer sells a subscription. From version 1.0.21: everything free for 72 hours (counted on the device, no payment details, no automatic purchase), then one optional non-consumable Google Play product `piggy_lifetime` (£2.99 UK, local price from Google Play). Without it, saved records stay visible and Grown-ups works; changes wait for the unlock. Refunds remove the unlock, never data.
+- `privacy-piggy.html` and `terms-piggy.html` rewritten for this model and checked against the 1.0.21 source (stored keys: free-days start and latest time seen, lifetime confirmation time; no identifiers; old subscription keys deleted on update). Both mention that closed-test versions up to 1.0.20 had a yearly subscription and how to cancel it.
+- Each app's pages describe that app's own model; change them only when that app changes.

@@ -156,7 +156,7 @@ window.SITE = {
         { emoji: "🫙", color: "purple", title: "Dreams",        text: "Pick something to save for and watch its jar fill up." },
         { emoji: "🏅", color: "orange", title: "Stickers",      text: "Collect 20 stickers as you save." },
         { emoji: "🛒", color: "green",  title: "Coin shop",     text: "Practise paying the exact price with pretend money, so the piggy stays full." },
-        { emoji: "🧹", color: "blue",   title: "Jobs to earn",  text: "A grown-up adds little jobs and what they earn; tap “I did it!” and the grown-up pays (Premium)." }
+        { emoji: "🧹", color: "blue",   title: "Jobs to earn",  text: "A grown-up adds little jobs and what they earn; tap “I did it!” and the grown-up pays." }
       ],
 
       momentsTitle: "Emma and her piggy",
@@ -166,14 +166,14 @@ window.SITE = {
       ],
 
       trust: ["No ads", "No accounts", "Nothing leaves the device"],
-      note: "Free to use with one dream. Premium (a yearly subscription billed by Google Play, with a 3-day free trial) unlocks more dreams, jobs, pocket money and the money games. The money in the app is only a record of savings, not real money.",
+      note: "Everything is free for 3 days, with no payment details. After that, a grown-up can unlock everything forever with one purchase through Google Play: no subscription. The money in the app is only a record of savings, not real money.",
 
       screenshots: [
         { src: "assets/piggy/home.webp",      alt: "Puc Puc Piggy home screen: a pink piggy holding £8.00, Add money and Take out buttons, and the Coin diary" },
         { src: "assets/piggy/add-money.webp", alt: "Add money: tap glossy coins and notes, choose where the money is from, then press Pop it in" },
         { src: "assets/piggy/dreams.webp",    alt: "My dreams: a Bike dream with £8.00 saved of £10.00, and a sticker collection" },
         { src: "assets/piggy/new-dream.webp", alt: "New goal: pick a picture, a name and a price for a dream" },
-        { src: "assets/piggy/play-2.webp",    alt: "Play: practise with coins and money, with the Coin shop at Easy, Medium and Tricky (Premium)" }
+        { src: "assets/piggy/play-2.webp",    alt: "Play: practise with coins and money in the Coin shop, at Easy, Medium and Tricky" }
       ],
 
       privacyUrl: "privacy-piggy.html",
