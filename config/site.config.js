@@ -111,7 +111,7 @@ window.SITE = {
         { emoji: "🖼️", color: "blue",   title: "Picture boards",    text: "A strawberry, an ice cream, a sun and lots more, from Easy to Tricky." },
         { emoji: "⭐", color: "yellow", title: "Stars",             text: "Collect stars as you finish pictures." },
         { emoji: "🎁", color: "orange", title: "Surprise me!",      text: "Let the game pick a picture for you." },
-        { emoji: "👧", color: "green",  title: "Friends to help",   text: "Emma and Kitty say what to do next." }
+        { emoji: "👧", color: "green",  title: "Friends to help",   text: "Emma and Kitty show what to do next in a speech bubble." }
       ],
 
       momentsTitle: "Pictures to make",
