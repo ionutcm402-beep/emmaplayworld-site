@@ -6,7 +6,7 @@ Last checked: 20 Oct 2026. Rule: nothing is linked or claimed unless verified. U
 |---|---|---|
 | YouTube channel `https://www.youtube.com/@emmapucpuc` | Confirmed from the owner's own screenshot of the channel (name "Emma Play World", handle @emmapucpuc). Not fetched by the tooling (YouTube is blocked in the build sandbox). | Open it once in a browser to confirm. |
 | Subscribe button (`...?sub_confirmation=1`) | Standard YouTube parameter, same channel. Not click-tested against YouTube. | Click it once in a browser. |
-| Google Play listing | **NOT VERIFIED. No link is shown.** Badge shows "Coming soon" and is not clickable. | A web search found no listing for Puc Puc Bubbles. Needs the real URL (`https://play.google.com/store/apps/details?id=...`) from Play Console. |
+| Google Play listings | **Live (owner confirmed 22 Nov 2026).** All four badges link to their listing: Bubbles `com.ionutcm.rainbowpopit`, Pegs `com.ionutcm.pucpucpegs`, Piggy `com.ionutcm.pucpucpiggy`, Bloom `com.ionutcm.pucpucbloom`. | URLs built from the apps' package names. Google Play could not be opened from the build sandbox, so open each badge once in a browser to confirm. |
 | Apple App Store | **No listing exists.** Official badge shown, not clickable, with a "Coming soon" pill. No Apple link is created. | Needs a real `https://apps.apple.com/...` URL once the app is live there. |
 | Official store badges | Supplied by the owner as artwork; used unmodified apart from cropping (`assets/badges/`). | |
 | Game video | Video `jwZMuZUtWeo` (https://youtu.be/jwZMuZUtWeo, supplied by the owner on 23 Oct 2026; replaces the earlier videos). Note text is neutral. | Not fetched by tooling. Check it matches the final game. |

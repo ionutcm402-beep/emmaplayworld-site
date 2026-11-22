@@ -115,6 +115,7 @@
       el("h3", { text: g.name }),
       g.tagline ? el("p", { text: g.tagline }) : null,
       soon ? el("span", { class: "soon-note", text: "Coming soon" }) : null,
+      anyLive(g) ? el("span", { class: "live-note", text: "Now on Google Play" }) : null,
       el("span", { class: "go", text: "Meet " + g.name + " →" })
     ]);
     return el("a", { class: "pick t-" + g.theme + " rise", href: pageOf(g) }, [pic, body]);

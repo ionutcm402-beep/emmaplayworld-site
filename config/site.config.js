@@ -20,7 +20,7 @@ window.SITE = {
     url: "https://emmaplayworld.com",
     contactEmail: "contact.emmaplayworld@gmail.com",
     tagline: "Little games. Big smiles.",
-    intro: "Two games and two apps for little ones, made with Emma and her friends.",
+    intro: "Two games and two apps for little ones, made with Emma and her friends. All four are now live on Google Play!",
     sign: "with Emma and her friends. Made for little moments of fun.",
     banner: { src: "assets/bloom/brand-banner-3.webp", alt: "Emma Play World: Emma lying in the garden with Bunny, Kitty and Konic the baby unicorn. Fun, play, learn, explore." },
     closingImage: { src: "assets/video/friends-together.webp", alt: "Emma lying in the grass with Bunny, Kitty and Konic the baby unicorn, bubbles floating above", width: 900, height: 900 }
@@ -60,7 +60,7 @@ window.SITE = {
       art: { src: "assets/video/hero-art-2.webp", alt: "Puc Puc Bubbles: Emma lying in the garden with Bunny, Kitty and Konic the baby unicorn, bubbles floating above" },
 
       stores: {
-        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        googlePlay: { status: "available", url: "https://play.google.com/store/apps/details?id=com.ionutcm.rainbowpopit", badge: "assets/badges/google-play.png" },
         appStore:   { status: "coming-soon", url: "", badge: "assets/badges/app-store.png" }
       },
 
@@ -101,7 +101,7 @@ window.SITE = {
       heroArt: { src: "assets/pegs/icon.webp", alt: "Emma winking and pressing a colourful peg into a pink peg board", square: true },
 
       stores: {
-        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        googlePlay: { status: "available", url: "https://play.google.com/store/apps/details?id=com.ionutcm.pucpucpegs", badge: "assets/badges/google-play.png" },
         appStore:   { status: "hidden", url: "", badge: "" }
       },
 
@@ -146,7 +146,7 @@ window.SITE = {
       art: { src: "assets/piggy/hero-coin-piggy.webp", alt: "Emma laughing and holding a big gold star coin, with a smiling pink piggy bank beside her" },
 
       stores: {
-        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        googlePlay: { status: "available", url: "https://play.google.com/store/apps/details?id=com.ionutcm.pucpucpiggy", badge: "assets/badges/google-play.png" },
         appStore:   { status: "hidden",      url: "", badge: "" }
       },
 
@@ -197,7 +197,7 @@ window.SITE = {
       ],
 
       stores: {
-        googlePlay: { status: "coming-soon", url: "", badge: "assets/badges/google-play.png" },
+        googlePlay: { status: "available", url: "https://play.google.com/store/apps/details?id=com.ionutcm.pucpucbloom", badge: "assets/badges/google-play.png" },
         appStore:   { status: "hidden",      url: "", badge: "" }
       },
 
